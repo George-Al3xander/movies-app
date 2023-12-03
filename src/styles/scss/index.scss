@@ -1,0 +1,42 @@
+@import "config";
+@import "reset";
+
+
+
+button {
+    & :hover {
+        cursor: pointer;
+    }
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+    
+    a {
+        opacity: .6;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            opacity: 1;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+        
+    }
+    .active {
+        opacity: 1;
+    }     
+}
+
+
+
+body {
+    background-color: black;
+    color: white;
+}
+@media (max-width: $md) {
+    .desktop {
+      display: none;
+    }
+}
