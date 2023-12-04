@@ -15,7 +15,7 @@ export const fetchOptions = {
 
 function App() {
 
-  console.log(fetchOptions)
+  
 
     return (<Box>
       <Routes>

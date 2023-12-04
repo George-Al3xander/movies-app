@@ -4,9 +4,12 @@ import {createTheme } from "@mui/material"
 
 const theme = createTheme({
     palette: {
-         primary: {
+        primary: {
             main: "#00925D"
-         }
+        },
+        info: {
+            main: "#FFFFFF"
+        }
     },
     shape: {
         borderRadius: 10
