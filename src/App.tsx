@@ -1,4 +1,4 @@
-import { Button, Container, Typography } from "@mui/material"
+import { Box, Button, Container, Typography } from "@mui/material"
 import { Route, Routes } from "react-router-dom"
 import Home from "./components/home/Home"
 
@@ -17,11 +17,11 @@ function App() {
 
   console.log(fetchOptions)
 
-    return (<Container>
+    return (<Box>
       <Routes>
         <Route element={<Home />} path="/"/>
       </Routes>
-    </Container>)
+    </Box>)
 }
 
 export default App

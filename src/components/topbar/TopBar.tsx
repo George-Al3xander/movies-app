@@ -8,7 +8,7 @@ const TopBar = () => {
 
 
 
-    return(<Box sx={{color: "white", display: "flex", justifyContent: "space-between", alignItems: 'center', py: 2}}>
+    return(<Box sx={{mb: "10rem",color: "white", display: "flex", justifyContent: "space-between", alignItems: 'center', py: 2}}>
         <Typography sx={{textTransform: "uppercase"}} variant="h5">Screen Score</Typography>
         <Nav />
         <TopBarBtns />
