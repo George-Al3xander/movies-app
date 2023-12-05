@@ -23,7 +23,6 @@ const HomeHeader = () => {
     const {data, isLoading, isError} = useQuery({queryKey: ["header-movies"], queryFn: getMovies})
 
     const [currentIndex,setCurrentIndex] = useState(0)
-    const currIndex = useRecoilValue(sliderIndex);
     //console.log(currIndex)
     
     if(isLoading) {
@@ -34,7 +33,7 @@ const HomeHeader = () => {
         return "Error..."
     }
     
-    const current = data![currIndex]
+    //const current = data![currIndex]
 
 
     /*
@@ -55,27 +54,37 @@ const HomeHeader = () => {
    
 
     return(<Box sx={{
-        backgroundImage: {
-            xs: `url(http://image.tmdb.org/t/p/original${current.poster_path})`, 
-            sm: `url(http://image.tmdb.org/t/p/original${current.backdrop_path})`
-        },
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        px: 2,
+        minHeight: "29rem",
+        // backgroundImage: {
+        //     xs: `url(http://image.tmdb.org/t/p/original${current.poster_path})`, 
+        //     sm: `url(http://image.tmdb.org/t/p/original${current.backdrop_path})`
+        // },
+        position: "relative",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         boxShadow: 
             `inset 0px 5rem  2rem -10px rgba(0,0,0,.7),
             inset 0px -10rem  2rem -10px rgba(0,0,0,.7)`,
-        px: 2,
         animation: "mymove 5s",
         animationDelay: "5s",
-        animationTimingFunction: "ease-in-out"
+        animationTimingFunction: "ease-in-out",
+
         //animation-timing-function: ease-in-out;
         //-webkit-animation-timing-function: ease-in-out;
 
-        }}>
+        }}>        
        <TopBar />
-       <HomeMovie {...current}/>
-       <SliderControls />
+       <Box  sx={{
+        display: "flex",
+        flexDirection: "column"}}>
+            <HomeMovie movies={data!}/>
+            <SliderControls />        
+       </Box>
     </Box>)
 }
 

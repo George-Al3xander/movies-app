@@ -51,3 +51,32 @@
   50% { background-color:rgba(0, 0, 0, 0.5); }
   51% {     background-image: url('https://images.unsplash.com/photo-1582480356444-60ca00301659?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2001&q=80'); }
   100% { background-color:rgba(0, 0, 0, 1); }} */
+
+  .fade-in-image { animation: fadeIn 3s; }
+  .fade-out-image { animation: fadeOut 3s; }
+
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes fadeIn1 {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes fadeIn2 {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes fadeOut1 {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes fadeOut2 {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
