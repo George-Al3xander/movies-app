@@ -80,3 +80,8 @@
     0% { opacity: 1; }
     100% { opacity: 0; }
   }
+
+
+  span {
+    background: linear-gradient(0deg,rgb(0,0,0 / .7), rgb(0,0,0 / 0));
+  }

@@ -67,15 +67,24 @@ const HomeHeader = () => {
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        boxShadow: 
-            `inset 0px 5rem  2rem -10px rgba(0,0,0,.7),
-            inset 0px -10rem  2rem -10px rgba(0,0,0,.7)`,
+        // boxShadow: 
+        //     `inset 0px 5rem  2rem -10px rgba(0,0,0,.7),
+        //     inset 0px -10rem  2rem -10px rgba(0,0,0,.7)`,
         animation: "mymove 5s",
         animationDelay: "5s",
         animationTimingFunction: "ease-in-out",
 
         //animation-timing-function: ease-in-out;
         //-webkit-animation-timing-function: ease-in-out;
+        isolation: "isolate",
+        '&::before': {
+            content: '""',
+            position: "absolute",
+            inset: '0',
+            //opacity: ".7",
+            zIndex:"2",
+            background: "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .3)) 90%",
+        }
 
         }}>        
        <TopBar />
