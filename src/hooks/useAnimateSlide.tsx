@@ -13,24 +13,45 @@ const useAnimateSlide = (ref: React.RefObject<HTMLImageElement | HTMLDivElement>
     const [mountStatus,setMountStatus] = useState(false)
 
 
-    
+    const [fadeIn, setFadeIn] = useState(false);
+    const [fadeOut, setFadeOut] = useState(false);
 
     useEffect(() => {        
-        if(ref.current && mountStatus) {            
+        if(ref.current && mountStatus) { 
+            setFadeOut(true)    
+               
             if( ref.current.style.animationName == "fadeOut2" ){
                 ref.current.style.animation = "fadeOut1 1.3s";
             } else {
                 ref.current.style.animation = "fadeOut2 1.3s";
             }
+            //console.log(fadeOut)
 
-            setTimeout(() => {
+            if(fadeOut) {
+                setUrl(`http://image.tmdb.org/t/p/original${backdrop_path}`)
+             
                 if( ref.current!.style.animationName == "fadeIn2" ){
                     ref.current!.style.animation = "fadeIn1 1.3s";
                 } else {
                     ref.current!.style.animation = "fadeIn2 1.3s";
-                }              
-                setUrl(`http://image.tmdb.org/t/p/original${backdrop_path}`)
-            }, 1200)
+                }
+             
+
+
+            } else {
+                setTimeout(() => {
+                    setUrl(`http://image.tmdb.org/t/p/original${backdrop_path}`)
+                    if( ref.current!.style.animationName == "fadeIn2" ){
+                        ref.current!.style.animation = "fadeIn1 1.3s";
+                    } else {
+                        ref.current!.style.animation = "fadeIn2 1.3s";
+                    }              
+                    setTimeout(() => {
+                        setFadeOut(false)
+                    }, 1200)
+                }, 1200)
+            }
+
 
         }
     }, [currIndex])
