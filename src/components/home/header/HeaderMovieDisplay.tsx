@@ -1,19 +1,21 @@
 import { Movie } from "../../../types/tmdb";
-import { sliderIndex } from "../../state/atoms/data";
+import { genres$, sliderIndex } from "../../state/atoms/data";
 import { useRecoilValue } from "recoil"
 import { useRef } from "react"
 import useAnimateSlide from "../../../hooks/useAnimateSlide"
 import {Button, ButtonGroup, Stack, Typography } from "@mui/material"
 import { FaPlayCircle } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
+import { genreNames$ } from "../../state/selectors/selectors";
 
 
 
 const HeaderMovieDisplay = ({movies}: {movies:Movie[]}) => {
     const currIndex = useRecoilValue(sliderIndex);
-    const {title, overview} = movies[currIndex];
+    const {title, overview, genre_ids, release_date} = movies[currIndex];
     const imgRef = useRef<HTMLImageElement>(null)
     const {url} = useAnimateSlide(imgRef, movies)
+    const genres = useRecoilValue(genreNames$(genre_ids))
 
     return(<Stack sx={{maxWidth: {xs: "100%", sm: "60%"}}} >
         <img ref={imgRef} className={"fade-in-image"} style={{
@@ -30,7 +32,9 @@ const HeaderMovieDisplay = ({movies}: {movies:Movie[]}) => {
         }} src={url} alt={title} />
         <Stack sx={{zIndex: 4}} spacing={1} direction="column" >
             <Typography variant="h4">{title}</Typography>  
-            <Typography fontSize={12} sx={{opacity: ".4"}} variant="caption">Lorem ipsum dolor sit.</Typography>
+            <Typography fontSize={12} sx={{opacity: ".4"}} variant="caption">
+                {new Date(release_date).getFullYear()}, {genres.toLocaleString().replaceAll(",", " • ")}
+            </Typography>
             <Typography sx={{
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',

@@ -1,9 +1,9 @@
 import { Alert, Box, Button, ButtonGroup, Skeleton, Stack, Typography } from "@mui/material"
 import { CiBookmark } from "react-icons/ci"
 import { FaPlayCircle } from "react-icons/fa"
-import { Movie, PopularMovies } from "../../../types/tmdb"
-import { useRecoilValue } from "recoil"
-import { sliderIndex } from "../../state/atoms/data"
+import { Genre, Movie, PopularMovies } from "../../../types/tmdb"
+import { useRecoilValue, useSetRecoilState } from "recoil"
+import { genres$, sliderIndex } from "../../state/atoms/data"
 import { useRef } from "react"
 import useAnimateSlide from "../../../hooks/useAnimateSlide"
 import { useQuery } from "@tanstack/react-query"
@@ -23,9 +23,28 @@ import HeaderMovieSkeleton from "./HeaderMovieSkeleton"
 
 
 const HeaderMovie = () => {
-   
+    const setGenres = useSetRecoilState(genres$)
+
+    const fetchGenre = async (link: string) => {
+        try {
+          return (await (await fetch(link, fetchOptions)).json()).genres as Genre[]   
+        } catch (error) {            
+            return [] as Genre[]
+        }
+      }
+
+    const getGenres = async () => {      
+        try {
+            const movie = await fetchGenre('https://api.themoviedb.org/3/genre/movie/list?language=en')
+            const tv = await fetchGenre('https://api.themoviedb.org/3/genre/tv/list?language=en')
+            setGenres(movie.concat(tv));           
+        } catch (error) {
+            alert(error)
+        }            
+    }
 
     const getMovies =  async () => {
+        await getGenres()
         const response = await fetch('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', fetchOptions)
         const data = await response.json() as PopularMovies
         return data.results.slice(0,6)

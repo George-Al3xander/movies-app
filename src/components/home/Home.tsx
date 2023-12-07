@@ -10,7 +10,7 @@ const Home = () => {
 
     return(<Box>
         <HomeHeader/>
-       
+        <ItemsVertical title={"still in theaters"} apiUrl='https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'/>
     </Box>)
 }
 
