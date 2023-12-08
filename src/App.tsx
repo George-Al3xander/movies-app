@@ -18,15 +18,10 @@ export const fetchOptions = {
 function App() {
 
 
-
-    
-
-  
-
     return (<Box>
       <Routes>
         <Route element={<Home />} path="/"/>
-      </Routes>
+      </Routes>      
     </Box>)
 }
 

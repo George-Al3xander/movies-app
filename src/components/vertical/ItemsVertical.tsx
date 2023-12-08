@@ -1,7 +1,7 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ItemVertical from './ItemVertical';
-import { Alert, Box, Container, Typography } from '@mui/material';
+import { Alert,Container, Typography } from '@mui/material';
 import { PopularMovies } from '../../types/tmdb';
 import { useQuery } from '@tanstack/react-query';
 import { fetchOptions } from '../../App';
@@ -23,12 +23,13 @@ const ItemsVertical = ({apiUrl, title}:{apiUrl:string, title: string}) => {
         },
         tablet: {
           breakpoint: { max: 1024, min: 464 },
-          items: 3,
-          slidesToSlide: 3
+          items: 2,
+          slidesToSlide: 2
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },
-          items: 1
+          items: 1,   
+
         }
       };
 
@@ -47,13 +48,13 @@ const ItemsVertical = ({apiUrl, title}:{apiUrl:string, title: string}) => {
     }
     
     if(isError) {
-        return <Alert severity="error">Failed to fetch header info, try reloading page!</Alert>
+        return <Alert severity="error">Failed to fetch movies, try reloading page!</Alert>
     }
       
     return(<Container>
       <Typography sx={{textTransform: "capitalize", py: 2, fontWeight: "700"}} variant='h5'>{title}</Typography>
       <ul style={{marginInline: "auto"}}>
-        <Carousel centerMode   responsive={responsive}>
+        <Carousel centerMode focusOnSelect   responsive={responsive}>
           {movies!.map((movie) => {
               return <ItemVertical movie={movie} key={movie.id}/>
           })}

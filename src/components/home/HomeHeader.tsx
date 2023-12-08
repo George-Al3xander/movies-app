@@ -17,8 +17,7 @@ const HomeHeader = () => {
     return(<Box sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        px: 2,
+        justifyContent: "space-between",        
         minHeight: "29rem",        
         position: "relative",
         backgroundPosition: "center",

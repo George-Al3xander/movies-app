@@ -1,17 +1,19 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Stack, Typography } from "@mui/material"
 import { Movie } from "../../types/tmdb"
-
+import { FaStar } from "react-icons/fa";
+import { Genres, MovieRating } from "../styled/styled";
 
 
 
 const ItemVertical = ({movie}: {movie: Movie}) => {
-    const {poster_path, title} = movie
+    const {poster_path, title, vote_average, genre_ids} = movie
 
     return(<Box sx={{
         borderRadius: 1, 
         overflow: "hidden", 
-        maxWidth: "12rem", 
+        maxWidth: {xs: '20rem',sm:"12rem"},
         postiion: "relative",
+        mr: 2,
         '&::before': {
             content: '""',
             position: "absolute",
@@ -23,6 +25,20 @@ const ItemVertical = ({movie}: {movie: Movie}) => {
 
         }}>        
         <img  src={`http://image.tmdb.org/t/p/original${poster_path}`} alt={title} />
+        <Box sx={{
+            position: "absolute",
+            bottom: 10,
+            zIndex: 3,
+            left: 5,
+            maxWidth: {xs: '20rem',sm:"12rem"},
+
+        }}>
+            <Typography fontSize={15} variant="h6">{title}</Typography>
+            <Stack alignItems={"start"} direction={"row"} spacing={.5}>
+                <MovieRating >{vote_average}</MovieRating>
+                <Genres  before={" | "} genre_ids={genre_ids}/>
+            </Stack>
+        </Box>
     </Box>)
 }
 

@@ -13,7 +13,7 @@ export const isButtonActive$ = selectorFamily({
 })
 
 export const genreNames$ = selectorFamily({
-    key: "GenresName",
+    key: "GenreNames",
     get: ((arr: number[]) => ({get}) => {
         const genres = get(genres$);
         //console.log(genres)

@@ -63,6 +63,7 @@ const HeaderMovie = () => {
     }
 
     return(<Box  sx={{
+        px:2,
         display: "flex",
         flexDirection: "column"}}>
         <HeaderMovieDisplay movies={movies!}/>
