@@ -31,3 +31,28 @@ export const MovieRating : FC<RatingProps> = ({children,spacing = .5,fontSize = 
             <Typography variant="caption" fontSize={fontSize}>{children.toFixed(1)}</Typography>
         </Stack>)
 }
+
+
+export const HomeHeaderBox = styled(Box)(() => ({
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",        
+    minHeight: "29rem",        
+    position: "relative",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat", 
+    animationDelay: "5s",
+    animationTimingFunction: "ease-in-out",
+    //animation-timing-function: ease-in-out;
+    //-webkit-animation-timing-function: ease-in-out;
+    isolation: "isolate",
+    '&::before': {
+        content: '""',
+        position: "absolute",
+        inset: '0',
+        //opacity: ".7",
+        zIndex:"2",
+        background: "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .3)) 90%",
+    }
+}))

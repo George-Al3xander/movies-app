@@ -4,19 +4,20 @@ import { useRecoilValue } from "recoil"
 import { useRef } from "react"
 import useAnimateSlide from "../../../hooks/useAnimateSlide"
 import {Button, ButtonGroup, Stack, Typography } from "@mui/material"
-import { FaPlayCircle } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
-
 import { Genres } from "../../styled/styled";
+import WatchTrailerBtn from "./WatchTrailerBtn";
+import { modalStatus$ } from "../../state/selectors/selectors";
 
 
 
 const HeaderMovieDisplay = ({movies}: {movies:Movie[]}) => {
     const currIndex = useRecoilValue(sliderIndex);
-    const {title, overview, genre_ids, release_date} = movies[currIndex];
+    const {title, overview, genre_ids, release_date,id} = movies[currIndex];
     const imgRef = useRef<HTMLImageElement>(null)
     const {url} = useAnimateSlide(imgRef, movies)
-   
+
+
 
     return(<Stack sx={{maxWidth: {xs: "100%", sm: "60%"}}} >
         <img ref={imgRef} className={"fade-in-image"} style={{
@@ -41,11 +42,11 @@ const HeaderMovieDisplay = ({movies}: {movies:Movie[]}) => {
                 display: '-webkit-box',
                 WebkitLineClamp: '3',
                 WebkitBoxOrient: 'vertical'               
-                }} variant="subtitle1" fontSize={12}>
+                }} variant="subtitle1" fontSize={16}>
                     {overview}
-            </Typography>           
+            </Typography>
             <ButtonGroup sx={{display: "flex", justifyContent:{xs: "center", sm: "flex-start"}}}>
-                <Button startIcon={<FaPlayCircle/>} size="small" variant="contained">Watch trailer</Button>
+                <WatchTrailerBtn id={id}/>
                 <Button color="info" startIcon={<CiBookmark />} size="small" variant="outlined">Add Watchlist</Button>
             </ButtonGroup>
         </Stack>

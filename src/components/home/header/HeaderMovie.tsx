@@ -39,7 +39,7 @@ const HeaderMovie = () => {
             const tv = await fetchGenre('https://api.themoviedb.org/3/genre/tv/list?language=en')
             setGenres(movie.concat(tv));           
         } catch (error) {
-            alert(error)
+            console.log(error)
         }            
     }
 

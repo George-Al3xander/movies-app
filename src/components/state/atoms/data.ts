@@ -11,3 +11,13 @@ export const genres$ = atom({
     key: "genres",
     default: [] as Genre[]
 })
+
+export const modal$ = atom({
+    key: "modalStatus",
+    default: false
+})
+
+export const trailerMovieId$ = atom({
+    key: "TrailerUrl",
+    default: null as null | number
+})

@@ -1,5 +1,5 @@
 import { selector, selectorFamily } from "recoil";
-import { genres$, sliderIndex } from "../atoms/data";
+import { genres$, modal$, sliderIndex, trailerMovieId$ } from "../atoms/data";
 import { Genre } from "../../../types/tmdb";
 
 
@@ -24,4 +24,15 @@ export const genreNames$ = selectorFamily({
             }
         }).filter(item => item)
     })
+})
+
+
+export const modalStatus$ = selector({
+    key: "ModalStatusSelektor",
+    get: ({get}) => {
+        const status = get(modal$);
+        const trailerId = get(trailerMovieId$)
+
+        return [status, trailerId != null].every(el => el == true)
+    }
 })

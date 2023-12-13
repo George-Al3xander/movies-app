@@ -54,7 +54,9 @@
 
   .fade-in-image { animation: fadeIn 3s; }
   .fade-out-image { animation: fadeOut 3s; }
-
+  :root {
+    --clr-primary: #00925D;
+}
 
   @keyframes fadeIn {
     0% { opacity: 0; }
@@ -85,3 +87,26 @@
   span {
     background: linear-gradient(0deg,rgb(0,0,0 / .7), rgb(0,0,0 / 0));
   }
+  
+  .items-vertical .swiper-slide {
+    max-width: 12rem;
+  }
+
+  .items-vertical {
+    --swiper-navigation-size: "25px"
+  }
+
+  .items-vertical .swiper-button-next,
+  .items-vertical .swiper-button-prev {
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 100%;
+    border: 2px solid black;
+    color: red;
+    width: 40px;
+    height: 40px;
+  }
+ 
+
+
+

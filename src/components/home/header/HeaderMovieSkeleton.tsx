@@ -13,6 +13,7 @@ const HeaderMovieSkeleton = () => {
         <Box  sx={{    
             maxWidth: {xs: "100%", sm: "60%"},        
             display: "flex",
+            p:2,
             flexDirection: "column"}}>
                 <Stack sx={{zIndex: 4}} spacing={1} direction="column" >
                     <Skeleton sx={{ bgcolor: disabledClr }} variant="text" width={"70%"} height={35} />                     

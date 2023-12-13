@@ -1,46 +1,16 @@
 import TopBar from "../topbar/TopBar"
-import { Box} from "@mui/material"
 import HeaderMovie from "./header/HeaderMovie"
+import { HomeHeaderBox } from "../styled/styled"
 
 
 
 const HomeHeader = () => {
     
 
-    
-
-
-    
-    
-    
-
-    return(<Box sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",        
-        minHeight: "29rem",        
-        position: "relative",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat", 
-        animationDelay: "5s",
-        animationTimingFunction: "ease-in-out",
-        //animation-timing-function: ease-in-out;
-        //-webkit-animation-timing-function: ease-in-out;
-        isolation: "isolate",
-        '&::before': {
-            content: '""',
-            position: "absolute",
-            inset: '0',
-            //opacity: ".7",
-            zIndex:"2",
-            background: "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .3)) 90%",
-        }
-
-        }}>        
-       <TopBar />
-       <HeaderMovie/>       
-    </Box>)
+    return(<HomeHeaderBox>
+        <TopBar />
+       <HeaderMovie/>  
+    </HomeHeaderBox>)
 }
 
 export default HomeHeader
