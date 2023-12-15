@@ -18,11 +18,13 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
+    "react-id-swiper": "^4.0.0",
     "react-multi-carousel": "^2.8.4",
     "react-player": "^2.13.0",
     "react-router-dom": "^6.20.1",
     "recoil": "^0.7.7",
     "rollup": "^4.8.0",
+    "sass": "^1.69.5",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

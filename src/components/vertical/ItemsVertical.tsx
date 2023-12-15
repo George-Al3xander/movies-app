@@ -9,31 +9,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
+import VerticalItemsSkeleton from '../skelton/VerticalItemsSkelton';
 
 const ItemsVertical = ({apiUrl, title}:{apiUrl:string, title: string}) => {
     
-    const responsive = {
-        superLargeDesktop: {
-          // the naming can be any, depends on you.
-          breakpoint: { max: 4000, min: 3000 },
-          items: 5
-        },
-        desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 4,
-          slidesToSlide: 4
-        },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 2,
-          slidesToSlide: 2
-        },
-        mobile: {
-          breakpoint: { max: 464, min: 0 },
-          items: 1,   
-
-        }
-      };
+    
 
       const getMovies =  async () => {
         const response = await fetch(apiUrl, fetchOptions)
@@ -41,18 +21,18 @@ const ItemsVertical = ({apiUrl, title}:{apiUrl:string, title: string}) => {
         return data.results
     }
 
-    const {data: movies, isLoading, isError} = useQuery({queryKey: ["vertical-movies"], queryFn: getMovies})
+    const {data: movies, isLoading, isError} = useQuery({queryKey: ["vertical-movies", title], queryFn: getMovies})
 
     
     
     if(isLoading) {
-        return "Loading"
+        return <VerticalItemsSkeleton title={title}/>
     }
     
     if(isError) {
         return <Alert severity="error">Failed to fetch movies, try reloading page!</Alert>
     }
-      
+     
     return(<Container className='items-vertical' maxWidth="xl">
       <Typography sx={{textTransform: "capitalize", py: 2, fontWeight: "700"}} variant='h5'>{title}</Typography>
       <ul style={{marginInline: "auto"}}>

@@ -4,7 +4,7 @@ import Home from "./components/home/Home"
 import TrailerWindow from "./components/TrailerWindow";
 import { modalStatus$ } from "./components/state/selectors/selectors";
 import { useRecoilValue } from "recoil";
-
+import "./styles/scss/index.scss"
 
 
 export const fetchOptions = {
