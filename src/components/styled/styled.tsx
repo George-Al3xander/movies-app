@@ -1,14 +1,23 @@
-import { Box, Skeleton, Stack, Typography, styled } from "@mui/material";
+import { Box, Container, Skeleton, Stack, Typography, styled } from "@mui/material";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa";
 import { GenresProps, RatingProps } from "../../types/type";
 import { useRecoilValue } from "recoil";
 import { genreNames$ } from "../state/selectors/selectors";
+import { Swiper, SwiperProps } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 
 
 export const Genres : FC<GenresProps> = ({genre_ids,before,after,variant="caption",fontSize=12,...props}) => {
     const genres = useRecoilValue(genreNames$(genre_ids))
+
+
+    if(genres.length == 0) {
+        return null
+    }
 
     return (<Typography  sx={{
         opacity: ".4",
@@ -33,11 +42,11 @@ export const MovieRating : FC<RatingProps> = ({children,spacing = .5,fontSize = 
 }
 
 
-export const HomeHeaderBox = styled(Box)(() => ({
+export const HomeHeaderBox = styled(Container)(() => ({
     // display: "flex",
     // flexDirection: "column",
     // justifyContent: "space-between",   
-    minHeight: "29rem",   
+    minHeight: "80vh",   
     // backgroundPosition: "center",
     // backgroundSize: "cover",
     // backgroundRepeat: "no-repeat", 
@@ -69,17 +78,21 @@ export const ImageHeader = styled("img")(() => ({
         top: "0",
         zIndex: "1",
         left: "0",        
-        width: "100%",
+        width: "100vw",
         height: "100%",
         objectFit: "cover", 
+        
 }))
 
 export const HeaderMovieContainer = styled(Stack)((props) => ({
     maxWidth:  "100%",
     [props.theme.breakpoints.up("sm")]: {
         maxWidth: "60%",
+        paddingInline:  "10%",
     },
-    minHeight: "29rem",
+    paddingBlock: "1rem",
+    paddingInline:  "1rem",
+    minHeight: "80vh",
     '&::before': {
         content: '""',
         position: "absolute",
@@ -90,19 +103,55 @@ export const HeaderMovieContainer = styled(Stack)((props) => ({
 }))
 
 
-export const TopBarContainer = styled(Box)(() => ({
+export const TopBarContainer = styled(Box)((props) => ({
     zIndex: 14,
     color: "white", 
     display: "flex", 
     justifyContent: "space-between", 
     alignItems: 'center', 
-    padding: "1rem",
+    [props.theme.breakpoints.up("sm")]: {        
+        paddingInline:  "10%",
+    },
+    paddingBlock: "1rem",
+    paddingInline:  "1rem",
     position: "fixed",
     width: "100%",
     top: 0,
+    left: 0,
     "&::hover": {
     transition: "background-color .5s ease-in-out",    
 
     },
     transition: "background-color .5s ease-in-out",    
 }))
+
+
+export const VerticalItemInfo = styled(Box)(() => ({
+    position: "absolute",
+    bottom: 0,
+    zIndex: 3,
+    marginTop: "auto",
+    display: "flex",
+    alignItems: "flex-end",
+    padding: ".5rem 1rem",
+    width: "100%",
+    height: "100%",
+   // background: "black",
+    // "&::before": {
+    //     content: '""',
+    //     position: "absolute",
+    //     inset: 0,                   
+    //     zIndex: 2,
+    //     bottom: 0,
+    //     boxShadow:  inset 2px -110px 52px -26px rgba(0,0,0,0.75)
+    // }
+    boxShadow: "inset 2px -150px 42px -5px rgba(0,0,0,0.75)",
+    
+}))
+
+
+
+
+export const StyledSlider : FC<SwiperProps> = ({...props}) => {
+    return <Swiper className="styled-slider"  navigation   modules={[Navigation]} {...props} />
+}

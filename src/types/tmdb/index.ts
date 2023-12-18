@@ -46,6 +46,7 @@ export interface PersonWithMediaType extends Person {
 }
 
 export interface Movie {
+  [x: string]: unknown;
   id: number;
   poster_path: string;
   adult: boolean;

@@ -1,4 +1,4 @@
-import { Box, Button, Modal, Skeleton } from "@mui/material"
+import { Alert, AlertTitle, Box, Button, Modal, Skeleton, Typography } from "@mui/material"
 import ReactPlayer from "react-player"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { modal$, trailerMovieId$ } from "./state/atoms/data"
@@ -25,7 +25,19 @@ const TrailerMenu = () => {
 
     const {data, isLoading, isError}= useQuery({queryKey: ["trailer"], queryFn: getVideos})
     if(isError) {
-        return "Error"
+        return <Modal  open={open}>
+        <Box height={"100%"} sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",            
+            gap: {xs: 2,sm:5},            
+        }}>
+          <Alert action={<Button  onClick={() => setModalStatus(false)}><IoIosCloseCircle size={45}/></Button>} severity="error">
+                    <AlertTitle>Error</AlertTitle>
+                    Seems like we couldn't find the trailer for that movie
+            </Alert>
+        </Box>
+    </Modal>
     }
     if(!open) {
         return null

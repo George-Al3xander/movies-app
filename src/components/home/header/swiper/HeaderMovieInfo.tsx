@@ -10,10 +10,10 @@ import { CiBookmark } from "react-icons/ci";
 const HeaderMovieInfo = ({movie}:{movie: Movie}) => {
     const {title,  release_date, genre_ids, id, overview} = movie
 
-    return(<Stack sx={{zIndex: 4, mt: "auto", m: "auto auto 3rem 1rem"}} spacing={1} direction="column" >
+    return(<Stack className="header-movie-info" sx={{zIndex: 4, mt: "auto"}} spacing={2} direction="column" >
     <Typography variant="h4">{title}</Typography>             
    
-    <Genres before={new Date(release_date).getFullYear() + " • "} genre_ids={genre_ids}/>
+    <Genres fontSize={14} before={new Date(release_date).getFullYear() + " • "} genre_ids={genre_ids}/>
     <Typography sx={{
         overflow: 'hidden',
         textOverflow: 'ellipsis',

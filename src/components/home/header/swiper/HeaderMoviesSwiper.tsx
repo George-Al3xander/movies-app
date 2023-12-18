@@ -4,7 +4,7 @@ import { fetchOptions } from "../../../../App";
 import { Genre, PopularMovies } from "../../../../types/tmdb";
 import HeaderMovieSkeleton from "../../../skelton/HeaderMovieSkeleton";
 import { useQuery } from "@tanstack/react-query";
-import { Alert} from "@mui/material";
+import { Alert, Container} from "@mui/material";
 import { HeaderMovieContainer, ImageHeader } from "../../../styled/styled";
 import HeaderMovieInfo from "./HeaderMovieInfo";
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -73,7 +73,7 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
             return <SwiperSlide>
                     <HeaderMovieContainer>
                         <ImageHeader src={`http://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title}/>
-                        <HeaderMovieInfo movie={movie}/>     
+                        <HeaderMovieInfo movie={movie}/>                          
                     </HeaderMovieContainer>
                 
         </SwiperSlide>})}
