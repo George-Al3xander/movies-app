@@ -1,6 +1,6 @@
 import { useSetRecoilState } from "recoil";
 import { genres$ } from "../../../state/atoms/data";
-import { fetchOptions } from "../../../../App";
+import { fetchFromTmdb, fetchOptions } from "../../../../utils";
 import { Genre, PopularMovies } from "../../../../types/tmdb";
 import HeaderMovieSkeleton from "../../../skelton/HeaderMovieSkeleton";
 import { useQuery } from "@tanstack/react-query";
@@ -19,7 +19,7 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
 
     const fetchGenre = async (link: string) => {
         try {
-          return (await (await fetch(link, fetchOptions)).json()).genres as Genre[]   
+          return (await (await fetchFromTmdb(link))).genres as Genre[]   
         } catch (error) {            
             return [] as Genre[]
         }
@@ -36,9 +36,8 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
     }
 
     const getMovies =  async () => {
-        await getGenres()
-        const response = await fetch(apiUrl, fetchOptions)
-        const data = await response.json() as PopularMovies
+        await getGenres()       
+        const data = await fetchFromTmdb(apiUrl) as PopularMovies
         return data.results.slice(0,6)
     }
 
@@ -70,7 +69,7 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
         }}
     >
         {movies?.map((movie) => {
-            return <SwiperSlide>
+            return <SwiperSlide key={movie.id + "header"}>
                     <HeaderMovieContainer>
                         <ImageHeader src={`http://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title}/>
                         <HeaderMovieInfo movie={movie}/>                          

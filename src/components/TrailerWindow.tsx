@@ -2,11 +2,11 @@ import { Alert, AlertTitle, Box, Button, Modal, Skeleton, Typography } from "@mu
 import ReactPlayer from "react-player"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { modal$, trailerMovieId$ } from "./state/atoms/data"
-import { fetchOptions } from "../App"
 import { Video, Videos } from "../types/tmdb"
 import { useQuery } from "@tanstack/react-query"
 import { modalStatus$ } from "./state/selectors/selectors"
 import { IoIosCloseCircle } from "react-icons/io";
+import { fetchFromTmdb } from "../utils"
 
 
 const TrailerMenu = () => {
@@ -15,9 +15,8 @@ const TrailerMenu = () => {
     const id = useRecoilValue(trailerMovieId$);
     const setModalStatus = useSetRecoilState(modal$)
     
-    const getVideos = async () => {      
-            const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, fetchOptions);            
-            const data: Videos = await response.json() 
+    const getVideos = async () => {  
+            const data: Videos = await fetchFromTmdb(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`)
             const filtered = data.results.filter((vid) => vid.type == "Trailer" && vid.site == "YouTube")
             const sorted = filtered.sort((a, b) => b.size - a.size)[0];  
             return sorted        
