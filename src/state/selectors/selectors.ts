@@ -1,6 +1,6 @@
 import { selector, selectorFamily } from "recoil";
-import { genres$, modal$, sliderIndex, trailerMovieId$ } from "../atoms/data";
-import { Genre } from "../../../types/tmdb";
+import { genresTv$,genresMovie$, modal$, sliderIndex, trailerMovieId$ } from "../atoms/data";
+import { Genre } from "../../types/tmdb";
 
 
 
@@ -12,14 +12,26 @@ export const isButtonActive$ = selectorFamily({
     })
 })
 
-export const genreNames$ = selectorFamily({
-    key: "GenreNames",
+export const genreNamesMovies$ = selectorFamily({
+    key: "GenreNamesMovie",
     get: ((arr: number[]) => ({get}) => {
-        const genres = get(genres$);
-        //console.log(genres)
+        const genres = get(genresMovie$);        
         return arr.map((num) => {
             const item = genres[num]
             if(item) {
+                return item.name
+            }
+        }).filter(item => item)
+    })
+})
+
+export const genreNamesTv$ = selectorFamily({
+    key: "GenreNamesTv",
+    get: ((arr: number[]) => ({get}) => {
+        const genres = get(genresTv$);        
+        return arr.map((num) => {
+            const item = genres[num]
+            if(item) {                
                 return item.name
             }
         }).filter(item => item)

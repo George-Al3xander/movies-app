@@ -1,19 +1,25 @@
 import { Box, Container, Skeleton, Stack, Typography, styled } from "@mui/material";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa";
-import { GenresProps, RatingProps } from "../../types/type";
+import { CustomSwiperBtnProps, GenresProps, RatingProps, StyledGridSliderProps } from "../../types/type";
 import { useRecoilValue } from "recoil";
-import { genreNames$ } from "../state/selectors/selectors";
+import { genreNamesMovies$, genreNamesTv$ } from "../../state/selectors/selectors";
 import { Swiper, SwiperProps } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Grid, Thumbs } from "swiper/modules";
 import 'swiper/css';
+import 'swiper/css/grid';
 import 'swiper/css/navigation';
 
 
 
-export const Genres : FC<GenresProps> = ({genre_ids,before,after,variant="caption",fontSize=12,...props}) => {
-    const genres = useRecoilValue(genreNames$(genre_ids))
 
+export const Genres : FC<GenresProps> = ({genre_ids,before,after,variant="caption",fontSize=12,isTv,...props}) => {
+    const genresTv = useRecoilValue(genreNamesTv$(genre_ids))
+    
+    const genresMovie = useRecoilValue(genreNamesMovies$(genre_ids))
+    const genres = (isTv && genresTv.length > 0 ) ? genresTv  : genresMovie;
+
+    
 
     if(genres.length == 0) {
         return null
@@ -42,27 +48,8 @@ export const MovieRating : FC<RatingProps> = ({children,spacing = .5,fontSize = 
 }
 
 
-export const HomeHeaderBox = styled(Container)(() => ({
-    // display: "flex",
-    // flexDirection: "column",
-    // justifyContent: "space-between",   
-    minHeight: "80vh",   
-    // backgroundPosition: "center",
-    // backgroundSize: "cover",
-    // backgroundRepeat: "no-repeat", 
-    // animationDelay: "5s",
-    // animationTimingFunction: "ease-in-out",
-    //animation-timing-function: ease-in-out;
-    //-webkit-animation-timing-function: ease-in-out;
-    // isolation: "isolate",
-    // '&::before': {
-    //     content: '""',
-    //     position: "absolute",
-    //     inset: '0',
-    //     //opacity: ".7",
-    //     zIndex:"2",
-    //     background: "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .3)) 90%",
-    // }
+export const HomeHeaderBox = styled(Container)(() => ({     
+    minHeight: "80vh",      
 }))
 
 export const StyledSkeleton = styled(Skeleton)(() => ({
@@ -84,15 +71,26 @@ export const ImageHeader = styled("img")(() => ({
         
 }))
 
-export const HeaderMovieContainer = styled(Stack)((props) => ({
+
+export const CustomContainer = styled(Box)((props) => ({
     maxWidth:  "100%",
     [props.theme.breakpoints.up("sm")]: {
         maxWidth: "60%",
         paddingInline:  "10%",
-    },
+    },  
     paddingBlock: "1rem",
     paddingInline:  "1rem",
-    minHeight: "80vh",
+}))
+
+export const HeaderMovieContainer = styled(Container)((props) => ({   
+    // [props.theme.breakpoints.up("sm")]: {
+    //     maxWidth: "60%",
+    //     paddingInline:  "10%",
+    // },  
+    // paddingBlock: "1rem",
+    // paddingInline:  "1rem",
+    //minHeight: "70vh",
+    display: "flex", 
     '&::before': {
         content: '""',
         position: "absolute",
@@ -136,15 +134,6 @@ export const VerticalItemInfo = styled(Box)(() => ({
     padding: ".5rem 1rem",
     width: "100%",
     height: "100%",
-   // background: "black",
-    // "&::before": {
-    //     content: '""',
-    //     position: "absolute",
-    //     inset: 0,                   
-    //     zIndex: 2,
-    //     bottom: 0,
-    //     boxShadow:  inset 2px -110px 52px -26px rgba(0,0,0,0.75)
-    // }
     boxShadow: "inset 2px -150px 42px -5px rgba(0,0,0,0.75)",
     
 }))
@@ -153,5 +142,17 @@ export const VerticalItemInfo = styled(Box)(() => ({
 
 
 export const StyledSlider : FC<SwiperProps> = ({...props}) => {
-    return <Swiper className="styled-slider"  navigation   modules={[Navigation]} {...props} />
+    return <Swiper className="styled-slider"  navigation   modules={[Navigation, Thumbs]} {...props} />
 }
+
+
+export const StyledGridSlider : FC<StyledGridSliderProps> = ({rows,className,...props}) => {
+    return <Swiper  spaceBetween={20} slidesPerView={1}  grid={{rows, fill: "row"}} className={`styled-slider styled-grid-slider ${className ? className : ""}`}    modules={[Grid]} {...props} />
+
+}
+
+
+
+
+export const CustomSwiperBtn : FC<CustomSwiperBtnProps> = ({prev, ...props}) => (
+<button {...props}   className={`custom-swiper-btn custom-swiper-btn-${prev ? "prev" : "next"}`} />)

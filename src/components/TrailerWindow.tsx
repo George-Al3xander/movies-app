@@ -1,10 +1,10 @@
 import { Alert, AlertTitle, Box, Button, Modal, Skeleton, Typography } from "@mui/material"
 import ReactPlayer from "react-player"
 import { useRecoilValue, useSetRecoilState } from "recoil"
-import { modal$, trailerMovieId$ } from "./state/atoms/data"
+import { modal$, trailerMovieId$ } from "../state/atoms/data"
 import { Video, Videos } from "../types/tmdb"
 import { useQuery } from "@tanstack/react-query"
-import { modalStatus$ } from "./state/selectors/selectors"
+import { modalStatus$ } from "../state/selectors/selectors"
 import { IoIosCloseCircle } from "react-icons/io";
 import { fetchFromTmdb } from "../utils"
 

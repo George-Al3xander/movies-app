@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchFromTmdb } from "../utils";
-import { FC, ReactNode } from "react";
+import { FC} from "react";
 import 'react-multi-carousel/lib/styles.css';
 import { Alert,Container, Typography } from '@mui/material';
 import {SwiperSlide } from 'swiper/react';
@@ -24,14 +24,14 @@ const SliderTemp : FC< SliderTempProps> = ({apiUrl, title, ItemCoomp, LoadingIte
     }
     const tempItems = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     
-    const {data, isLoading, isError} = useQuery({queryKey: ["vertical-items", title, apiUrl], queryFn: fetch})
-    
-    if(isError) return <Alert severity="error">Failed to fetch {title}, try reloading page!</Alert>
+    const {data,isLoading,  isError} = useQuery({queryKey: ["horizontal-items", title, apiUrl], queryFn: fetch})
 
-    return(<Container className='items-vertical' maxWidth="xl">
+    if(isError) return <Alert severity="error">Failed to fetch "{title.toUpperCase()}", try reloading page!</Alert>
+
+    return(<Container className='horizontal-items' maxWidth="xl">
         <Typography sx={{textTransform: "capitalize", py: 2, fontWeight: "700"}} variant='h5'>{title}</Typography>
         <ul style={{marginInline: "auto"}}>   
-            <StyledSlider slidesPerView={slidesPerView ? slidesPerView : "auto"} spaceBetween={spaceBetween ? spaceBetween : 10}>
+            <StyledSlider  slidesPerView={slidesPerView ? slidesPerView : "auto"} spaceBetween={spaceBetween ? spaceBetween : 10}>
                 {isLoading ?
                 tempItems.map((num) => {                        
                     return <SwiperSlide key={apiUrl + num}><LoadingItemCoomp index={num}/></SwiperSlide>

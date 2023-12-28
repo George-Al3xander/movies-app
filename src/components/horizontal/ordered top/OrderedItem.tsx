@@ -1,16 +1,16 @@
 import { Box,  Stack, Typography } from "@mui/material"
-import { Movie, TV } from "../../types/tmdb"
-import { Genres, MovieRating } from "../styled/styled"
+import { Movie, TV } from "../../../types/tmdb"
+import { Genres, MovieRating } from "../../styled/styled"
 
 interface OrderedItemProps extends  Movie, TV {
-    index: number
+    index?: number
 }
 
 const OrderedItem = ({title,name, poster_path,genre_ids, vote_average, release_date, media_type,index}: OrderedItemProps) => {
-    
+   
 
     return(<Box className="ordered-item">
-        <Typography fontWeight={700} sx={{alignSelf: "center"}} variant="h1">{index + 1}</Typography>
+        {index != undefined && <Typography fontWeight={700} sx={{alignSelf: "center"}} variant="h1">{index + 1}</Typography>}
         <img  src={`http://image.tmdb.org/t/p/w300${poster_path}`} alt={title ? title : name}/>
         <Box  className="info-wrapper">          
            <Stack direction={"row"} spacing={1}>

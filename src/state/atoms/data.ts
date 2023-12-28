@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { Genre } from "../../../types/tmdb";
+import { Genre } from "../../types/tmdb";
 
 
 export const sliderIndex = atom({
@@ -7,8 +7,13 @@ export const sliderIndex = atom({
     default: 0
 })
 
-export const genres$ = atom({
-    key: "genres",
+export const genresTv$ = atom({
+    key: "genresTv",
+    default: [] as Genre[]
+})
+
+export const genresMovie$ = atom({
+    key: "genresMovie",
     default: [] as Genre[]
 })
 

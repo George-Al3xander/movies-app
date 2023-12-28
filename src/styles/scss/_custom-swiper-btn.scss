@@ -1,0 +1,58 @@
+.custom-swiper-btn {
+    --clr-swiper-primary: rgb(40,40,40);
+    --clr-swiper-secondary: rgb(220,220,220);
+ 
+    background-color:	var(--clr-swiper-primary);
+    padding: 8px 16px;
+    border-radius: 100%;
+    border: 2px solid var(--clr-swiper-primary);
+    color: var(--clr-swiper-secondary);
+    width: 40px;
+    height: 40px;
+    --swiper-navigation-size: "25px";
+    svg {
+      width: var(--swiper-navigation-size);
+      height: var(--swiper-navigation-size);
+    }
+    display: grid;
+    justify-items: center;
+    align-items: center;  
+
+    transition: all .5s ease;
+        
+    &:hover {
+      cursor: pointer;
+    }
+  
+    &:disabled {
+      opacity: .4;
+      cursor: initial;
+    }
+    
+}
+
+
+.custom-swiper-btn-prev, .custom-swiper-btn-next {
+  &::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      content: '';
+      -webkit-mask-size: cover;
+      mask-size: cover;
+      background-color: white;
+      transform: translate(-40%);
+    }
+ }
+
+
+
+.custom-swiper-btn-prev::after {  
+  -webkit-mask: url("../../assets/icons/prev.svg") no-repeat 50% 50%;
+  mask: url("../../assets/icons/prev.svg") no-repeat 50% 50%;
+}
+
+.custom-swiper-btn-next::after {  
+  -webkit-mask: url("../../assets/icons/next.svg") no-repeat 50% 50%;
+  mask: url("../../assets/icons/next.svg") no-repeat 50% 50%;
+}

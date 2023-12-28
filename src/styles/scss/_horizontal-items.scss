@@ -1,0 +1,31 @@
+.horizontal-items {
+  --swiper-navigation-size: "25px";
+  margin-block: 1rem;  
+}
+
+.poster-items {
+  .swiper-slide {
+      max-width: 15rem;
+      height: auto;
+      min-height: 14rem;
+    }
+      
+    @media (max-width:$sm) {
+     .swiper-slide {
+        max-width: 20rem;
+      }      
+    }
+}
+  
+ 
+
+.backdrop-items {  
+    .swiper-slide {
+        max-width: 25rem;
+    }
+    .swiper-button-disabled {
+      opacity: 0 !important;
+      transition: all .3s ease;
+    }
+}
+

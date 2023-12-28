@@ -1,7 +1,7 @@
 import { Button } from "@mui/material"
 import { FaPlayCircle } from "react-icons/fa"
 import { Movie } from "../../../types/tmdb"
-import { modal$, trailerMovieId$ } from "../../state/atoms/data"
+import { modal$, trailerMovieId$ } from "../../../state/atoms/data"
 import { useSetRecoilState } from "recoil"
 
 

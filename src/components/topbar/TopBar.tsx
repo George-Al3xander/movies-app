@@ -11,7 +11,7 @@ const TopBar = () => {
     const isScrolled = useScrolled();
     
 
-    return(<TopBarContainer sx={{backgroundColor: isScrolled ? "black" : "transparent"}}>
+    return(<TopBarContainer sx={{backgroundColor: isScrolled ? "#0D0C0F" : "transparent"}}>
         <Typography sx={{textTransform: "uppercase"}} variant="h5">Screen Score</Typography>
         <Nav />
         <TopBarBtns />

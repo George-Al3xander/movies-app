@@ -1,0 +1,23 @@
+.items-vertical { 
+    svg {
+      fill: white;
+    }
+   
+    .swiper-slide {   
+      margin-bottom: 1rem;     
+    }
+  }
+  
+  @media (min-width: $sm) {
+    .main-slider {
+      max-width: 49%;
+      .swiper-slide {
+        height: 100% !important;
+      }    
+    }
+  
+    .side-slider {
+      max-width: 23%;  
+     
+    }  
+  }

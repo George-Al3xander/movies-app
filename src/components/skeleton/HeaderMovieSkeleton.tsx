@@ -22,7 +22,7 @@ export const HeaderMovieInfoSkeleton = () => {
 
 const HeaderMovieSkeleton = () => {
 
-    return(<HeaderMovieContainer sx={{minHeight: "29rem"}}>
+    return(<HeaderMovieContainer maxWidth="xl" sx={{minHeight: "29rem"}}>
         <HeaderMovieInfoSkeleton />
     </HeaderMovieContainer>)
 }

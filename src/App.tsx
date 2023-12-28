@@ -5,6 +5,7 @@ import TrailerWindow from "./components/TrailerWindow";
 import { modalStatus$ } from "./components/state/selectors/selectors";
 import { useRecoilValue } from "recoil";
 import "./styles/scss/index.scss"
+import Footer from "./components/Footer";
 
 
 
@@ -21,7 +22,8 @@ function App() {
       
       <Routes>
         <Route element={<Home />} path="/"/>
-      </Routes>      
+      </Routes>   
+      <Footer />   
     </Box>)
 }
 

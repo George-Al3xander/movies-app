@@ -11,10 +11,10 @@ import { Navigation } from 'swiper/modules';
 
 import { useState } from "react"
 import HeaderMovieInfo from "../header/swiper/HeaderMovieInfo"
-import { Genres, HeaderMovieContainer, MovieRating, StyledSkeleton, VerticalItemInfo } from "../../styled/styled"
-import ItemVertical from "../../vertical/ItemVertical"
+import {  HeaderMovieContainer, StyledSkeleton} from "../../styled/styled"
+import ItemVertical from "../../horizontal/poster/PosterItem"
 import { fetchFromTmdb } from "../../../utils";
-import HeaderMovieSkeleton, { HeaderMovieInfoSkeleton } from "../../skelton/HeaderMovieSkeleton";
+import  { HeaderMovieInfoSkeleton } from "../../skeleton/HeaderMovieSkeleton";
 
 
 
@@ -70,7 +70,7 @@ const CardsBlock = ({apiUrl}:{apiUrl: string}) => {
                     <Typography  variant="h3">Featured in Screen Score</Typography>
                     <Typography sx={{opacity: ".7"}}  variant="h5">Best featured for you today</Typography>
                 </Stack>
-                {isLoading ? <HeaderMovieInfoSkeleton /> : <HeaderMovieInfo movie={movies![currIndex]}/>}
+                {isLoading ? <HeaderMovieInfoSkeleton /> : <HeaderMovieInfo {...movies![currIndex]}/>}
             </Box>
             {isLoading ?
             <StyledSkeleton height={400} variant="rounded" width={300}/>

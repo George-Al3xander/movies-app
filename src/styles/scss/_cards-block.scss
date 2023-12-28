@@ -1,0 +1,59 @@
+.cards-block {
+    overflow-x: hidden !important;
+     $height: 400px;
+    .block {     
+      height: $height;     
+      width: calc($height * 0.75);
+      z-index: 4;
+      .swiper-slide {
+        border-radius: 1rem;
+      };
+      margin: initial;    
+    }
+  
+    .cards {
+      align-self: center;
+    }
+  
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: $clr-primary;
+    }
+  
+    .background {    
+      position: absolute;
+      
+      z-index: 1;
+      width: 100%;
+      max-width: 100% !important;
+      height: 100%;
+      left: 0;  
+      bottom: 0;
+      
+    }
+  
+   
+  
+    
+    .backdrop {
+      display: none;
+    }
+  
+     @media (min-width:$sm) {    
+      margin-inline: auto;  
+    }
+  
+    @media (max-width: $sm) {
+      .block {    
+        width: 240px;
+        height: 320px;
+      }
+      .background {
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+    
+  }

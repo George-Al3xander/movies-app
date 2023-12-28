@@ -1,9 +1,0 @@
-
-
-
-
-const CardsBlockInfo = () => {
-
-
-    return
-}

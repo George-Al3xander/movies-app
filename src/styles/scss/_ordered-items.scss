@@ -1,0 +1,36 @@
+.ordered-top {
+    .swiper-slide {
+      max-width: 25rem;    
+     //overflow: hidden;
+    }
+    
+  }
+  
+  .ordered-item {
+   display: flex;
+   align-items: center;
+   gap: 1.25rem;
+   height: 100%;
+   .info {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;    
+      align-self: flex-end;    
+   }
+  
+   .info-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: $orderedSlideHeight;
+   }
+   img {
+      max-height: $orderedSlideHeight;     
+      max-width: calc($orderedSlideHeight * 0.75);
+      border-radius: 1rem;
+      
+      object-fit: cover;
+      
+    }
+   
+  }

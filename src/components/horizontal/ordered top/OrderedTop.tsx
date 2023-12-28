@@ -1,7 +1,7 @@
 import OrderedItem from "./OrderedItem";
 import { Box, Typography } from "@mui/material";
-import SliderTemp from "../SliderTemp";
-import { StyledSkeleton } from "../styled/styled";
+import SliderTemp from "../../SliderTemp";
+import { StyledSkeleton } from "../../styled/styled";
 
 const SkeletonItem = ({index}: {index: number}) =>  {
     return (<Box className="ordered-item">

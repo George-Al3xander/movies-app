@@ -1,8 +1,8 @@
 import { useSetRecoilState } from "recoil";
-import { genres$ } from "../../../state/atoms/data";
+import { genresMovie$, genresTv$ } from "../../../../state/atoms/data";
 import { fetchFromTmdb, fetchOptions } from "../../../../utils";
-import { Genre, PopularMovies } from "../../../../types/tmdb";
-import HeaderMovieSkeleton from "../../../skelton/HeaderMovieSkeleton";
+import { Genre, Movie, PopularMovies, PopularTvShowResult, SimilarTvShows, TV } from "../../../../types/tmdb";
+import HeaderMovieSkeleton from "../../../skeleton/HeaderMovieSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import { Alert, Container} from "@mui/material";
 import { HeaderMovieContainer, ImageHeader } from "../../../styled/styled";
@@ -15,7 +15,8 @@ import 'swiper/css/pagination';
 
 
 const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
-    const setGenres = useSetRecoilState(genres$)
+    const setGenresTv = useSetRecoilState(genresTv$)
+    const setGenresMovie = useSetRecoilState(genresMovie$)
 
     const fetchGenre = async (link: string) => {
         try {
@@ -29,7 +30,8 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
         try {
             const movie = await fetchGenre('https://api.themoviedb.org/3/genre/movie/list?language=en')
             const tv = await fetchGenre('https://api.themoviedb.org/3/genre/tv/list?language=en')
-            setGenres(movie.concat(tv));           
+            setGenresMovie(movie)         
+            setGenresTv(tv)         
         } catch (error) {
             console.log(error)
         }            
@@ -37,8 +39,8 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
 
     const getMovies =  async () => {
         await getGenres()       
-        const data = await fetchFromTmdb(apiUrl) as PopularMovies
-        return data.results.slice(0,6)
+        const data = await fetchFromTmdb(apiUrl) as PopularMovies | SimilarTvShows
+        return data.results.slice(0,6) as (Movie & TV)[]
     }
 
     const {data: movies, isLoading, isError} = useQuery({queryKey: ["header-movies"], queryFn: getMovies})
@@ -70,9 +72,9 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
     >
         {movies?.map((movie) => {
             return <SwiperSlide key={movie.id + "header"}>
-                    <HeaderMovieContainer>
+                    <HeaderMovieContainer sx={{minHeight: "70vh"}} maxWidth="xl">
                         <ImageHeader src={`http://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title}/>
-                        <HeaderMovieInfo movie={movie}/>                          
+                        <HeaderMovieInfo {...movie}/>                          
                     </HeaderMovieContainer>
                 
         </SwiperSlide>})}
