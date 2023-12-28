@@ -5,12 +5,14 @@ import GenrePickSlide from "./GenrePickSlide"
 import { Swiper, SwiperClass } from "swiper/react"
 import { EffectFade } from "swiper/modules"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import GenreMoviesDisplay from "../GenreMoviesDisplay"
+import { useWatchGenreCtx } from "../../../hooks/useWatchGenreCtx"
+import { Box } from "@mui/material"
 interface props {
     isTv: boolean,    
 }
@@ -20,45 +22,22 @@ interface props {
 const GenresPickSlider = ({isTv}: props) => {
 
     const genresTv = useRecoilValue(genresTv$)    
-    const genresMovie = useRecoilValue(genresMovie$)
-    const [mainRef, setMainRef] = useState<SwiperClass>();
-
-
+    const genresMovie = useRecoilValue(genresMovie$)   
     const genres = (isTv && genresTv.length > 0 ) ? genresTv  : genresMovie;
     
-    return(<span>
-        <Swiper
-        modules={[EffectFade]} 
-        onSwiper={setMainRef}
-        allowTouchMove={false}           
-        slidesPerView={1}
-        >
-            {genres.map((props) => <GenreMoviesDisplay  {...props}/>)}
+    return(<Box>
+         {genres.map((props) => <GenreMoviesDisplay  {...props}/>)}
 
-        </Swiper>
-
-        <button onClick={() => {
-            if(mainRef) {
-                console.log(mainRef)
-            }
-        }}>Click</button>
-
-        <span className="genre-pick-slider">
+        <Box className="genre-pick-slider">
             <StyledSlider  
             slideToClickedSlide 
             slidesPerView={"auto"} 
             spaceBetween={20}            
             >
-            {genres.map((props, index) => <GenrePickSlide onClick={() => {
-                if(mainRef) {
-                    mainRef.slideTo(index, 500)
-                }
-            }} index={index} {...props}/>)}
+            {genres.map((props) => <GenrePickSlide {...props}/>)}
             </StyledSlider>
-        </span>
-
-
-    </span>)
+        </Box>
+    </Box>)
 }
 
 export default GenresPickSlider

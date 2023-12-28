@@ -18,9 +18,8 @@ const HeaderMovieInfo = ({title, name ,release_date, genre_ids, id, overview, vo
     <Typography variant="h4">{title ? title : name}</Typography>             
     <Stack alignItems={"start"} direction={"row"} spacing={.5}>
     {rating && <MovieRating fontSize={16}>{vote_average}</MovieRating>}
-            
     <Genres isTv={title == undefined} fontSize={16} before={rating ? " | " : "" + new Date(release_date).getFullYear() + " • "} genre_ids={genre_ids}/>
-            </Stack>
+    </Stack>
     {!noDesc && 
     <Typography sx={{
         overflow: 'hidden',

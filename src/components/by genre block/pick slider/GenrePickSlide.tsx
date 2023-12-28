@@ -8,13 +8,10 @@ import { useCheckGenreMatch, useWatchGenreCtx} from "../../../hooks/useWatchGenr
 import { useEffect, useState } from "react"
 
 
-interface GenrePickSlideProps extends Genre {
-    index: number,
-    onClick: Function
-}
 
-const GenrePickSlide = ({name, id, index, onClick}: GenrePickSlideProps) => {
-    const [firstRender, setFirstRender] = useState(false)
+
+const GenrePickSlide = ({name, id}: Genre) => {
+    
     const {handleClick} = useWatchGenreCtx()
     const isMatch = useCheckGenreMatch(id)
     
@@ -23,9 +20,8 @@ const GenrePickSlide = ({name, id, index, onClick}: GenrePickSlideProps) => {
     const {data, isLoading} = useQuery({queryKey: ["genre-pick-slide", id, name], queryFn: getElems})
     
     useEffect(() => {
-        if(data && index == 1) {
-            handleClick({name,id,results: data.results.filter((el) => el.backdrop_path) as (Movie & TV)[]})
-
+        if(data) {
+            handleClick({name,id,results: data.results.filter((el) => el.backdrop_path) as (Movie & TV)[],index: 0})
         }
     },[data])
     
@@ -36,16 +32,12 @@ const GenrePickSlide = ({name, id, index, onClick}: GenrePickSlideProps) => {
     
     const filtered =  data!.results.filter((el) => el.backdrop_path) as (Movie & TV)[]
     const click = () => {
-        if(!isMatch) {
-             handleClick({name,id,results: filtered})
+        if(!isMatch) {            
+             handleClick({name,id,results: filtered, index: filtered.findIndex(el => el.id == id)})
         }
     }
     const {backdrop_path} = filtered[0];
-    
-    return(<SwiperSlide className={isMatch ? "active" : ""} onClick={() => {
-        onClick()
-        click()
-    }}>
+    return(<SwiperSlide className={isMatch ? "active" : ""} onClick={click}>
         <Box position={"relative"}>
         <Box position={"absolute"} zIndex={4} top={"40%"} left={0} right={0} ml={"auto"} mr={"auto"} textAlign={"center"}>
             <Typography  fontSize={20} variant="h6">{name}</Typography>

@@ -6,17 +6,19 @@ import { Genre, Movie, TV } from "../types/tmdb"
 type ContextType = ReturnType<typeof useWatchGenreCtxManager>
 
 const GenreContext = createContext<ContextType>({
-    currentGenre: {name: "",id:0, results: []}, 
+    currentGenre: {name: "",id:0, results: [], index: 0}, 
     handleClick: () => {},
     checkMatch: () => false,
     thumbsSwiper: null,
-    setThumbsSwiper: () => {}
+    setThumbsSwiper: () => {},
+    
 })
 
 
 
 interface CurrGenre extends Genre {
-    results: (Movie & TV)[]
+    results: (Movie & TV)[],
+    index: number
 }
 
 
@@ -24,9 +26,9 @@ interface CurrGenre extends Genre {
 
 
 export const useWatchGenreCtxManager = () => {
-    const [currentGenre, setCurrentGenre] = useState<CurrGenre>({name: "",id:0, results: []})
+    const [currentGenre, setCurrentGenre] = useState<CurrGenre>({name: "",id:0, results: [], index: 0})
     const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
-    const [genresResult,setGenresResult] = useState<CurrGenre[]>([])
+    
     
     const handleClick = (el : CurrGenre) => {
         setCurrentGenre(el)
