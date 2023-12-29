@@ -10,15 +10,19 @@ const MovieRelease = () => {
 
 
 
-    return(<>
-        <HeaderContainer sx={{backgroundSize: "cover",backgroundImage: `url(${HeaderBg})`}}>
-
+    return(<Box>
+        <HeaderContainer shadowStrong maxWidth="xl" sx={{
+            backgroundSize: "cover",backgroundImage: `url(${HeaderBg})`,
+           // backgroundColor: "red"
+          
+            }}>
+                <Typography>Danb</Typography>
         </HeaderContainer>
 
         <Container maxWidth="xl">
-
+Damn
         </Container>
-    </>)
+    </Box>)
 }
 
 export default MovieRelease

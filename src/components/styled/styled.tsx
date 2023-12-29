@@ -1,7 +1,7 @@
 import { Box, Container, Skeleton, Stack, Typography, styled } from "@mui/material";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa";
-import { CustomSwiperBtnProps, GenresProps, RatingProps, StyledGridSliderProps } from "../../types/type";
+import { CustomSwiperBtnProps, GenresProps, HeaderContainerProps, RatingProps, StyledGridSliderProps } from "../../types/type";
 import { useRecoilValue } from "recoil";
 import { genreNamesMovies$, genreNamesTv$ } from "../../state/selectors/selectors";
 import { Swiper, SwiperProps } from "swiper/react";
@@ -82,23 +82,28 @@ export const CustomContainer = styled(Box)((props) => ({
     paddingInline:  "1rem",
 }))
 
-export const HeaderContainer = styled(Container)((props) => ({   
+export const HContainer = styled(Container)((props) => ({   
     // [props.theme.breakpoints.up("sm")]: {
     //     maxWidth: "60%",
     //     paddingInline:  "10%",
     // },  
     // paddingBlock: "1rem",
     // paddingInline:  "1rem",
-    minHeight: "70vh",
+    minHeight: "70vh",    
     display: "flex", 
     '&::before': {
         content: '""',
         position: "absolute",
         inset: '0',                   
         zIndex:"2",
-        background: "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .3)) 90%",
+        background: ``,
     }
 }))
+
+const strongShadow = "linear-gradient(0deg, rgba(0,0,0, .9) 40%, rgba(0,0,0, .6)) 90%"
+const defaultShadow = "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .3)) 90%"
+
+export const HeaderContainer : FC <HeaderContainerProps> = ({shadowStrong, sx,...props}) => (<HContainer sx={{'&::before': {background: shadowStrong ? strongShadow : defaultShadow},...sx}} {...props}/>)
 
 
 export const TopBarContainer = styled(Box)((props) => ({

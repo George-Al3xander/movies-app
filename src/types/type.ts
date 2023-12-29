@@ -1,4 +1,4 @@
-import { StackProps, TypographyProps } from "@mui/material";
+import { ContainerProps, StackProps, TypographyProps } from "@mui/material";
 import { ButtonHTMLAttributes, ComponentType, ReactPropTypes } from "react";
 import { SwiperProps } from "swiper/react";
 
@@ -38,4 +38,8 @@ export interface StyledGridSliderProps extends SwiperProps {
 export interface CustomSwiperBtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     prev?: boolean,
     size?: number
+}
+
+export interface HeaderContainerProps extends ContainerProps {
+    shadowStrong?: boolean
 }
