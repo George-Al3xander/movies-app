@@ -1,27 +1,34 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectProps } from "@mui/material"
-import { FC } from "react"
+import { FC, useState } from "react"
 
 
+
+interface Props  extends SelectProps{
+
+}
 
 
 const SelectElement : FC<SelectProps> = ({onChange}) => {
+    const [age, setAge] = useState("Worldwide")
 
 
-
-    return(<FormControl className="custom-select" fullWidth>
-        {/* <InputLabel sx={{fontSize: "18", color: "white"}} id="demo-simple-select-label">Age</InputLabel> */}
+    return(<FormControl sx={{ m: 1, minWidth: 120 , input: {
+        color: "white"
+    }}} className="custom-select" fullWidth>        
         <Select
-       
+       displayEmpty
           id="demo-simple-select"
-          value={"Twenty"}
-          label="Age"
-            color="info"
-          sx={{borderColor: "white"}}
-          onChange={onChange}
+          value={age}          
+          color="info"
+          sx={{borderColor: "white", color: "white"}}
+          onChange={(e) => setAge(e.target.value)}
         >
-          <MenuItem selected value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+        <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem key={1} value={10}>Ten</MenuItem>
+          <MenuItem key={2} value={20}>Twenty</MenuItem>
+          <MenuItem key={3} value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>)
 }
