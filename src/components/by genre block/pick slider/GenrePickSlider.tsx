@@ -11,7 +11,6 @@ import 'swiper/css/effect-cards';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import GenreMoviesDisplay from "../GenreMoviesDisplay"
-import { useWatchGenreCtx } from "../../../hooks/useWatchGenreCtx"
 import { Box } from "@mui/material"
 interface props {
     isTv: boolean,    
@@ -26,7 +25,7 @@ const GenresPickSlider = ({isTv}: props) => {
     const genres = (isTv && genresTv.length > 0 ) ? genresTv  : genresMovie;
     
     return(<Box>
-         {genres.map((props) => <GenreMoviesDisplay  {...props}/>)}
+         {genres.map((props, index) => <GenreMoviesDisplay index={index}  {...props}/>)}
 
         <Box className="genre-pick-slider">
             <StyledSlider  

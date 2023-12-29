@@ -14,7 +14,7 @@ const SkeletonItem = ({index}: {index: number}) =>  {
 const OrderedTop = (props:{apiUrl: string,title: string}) => {
     
 
-    return(<Box className="ordered-top">
+    return(<Box sx={{my: 4}} className="ordered-top">
         <SliderTemp LoadingItemCoomp={SkeletonItem} spaceBetween={80} ItemCoomp={OrderedItem} {...props}/>
     </Box>)
 }

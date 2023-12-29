@@ -8,7 +8,7 @@ const SkeletonItem = () => (<StyledSkeleton variant="rounded"  sx={{height:  {xs
 const PosterSlider = ({apiUrl, title}:{apiUrl:string,title: string}) => {
     
          
-    return(<span className="poster-items"><SliderTemp apiUrl={apiUrl} title={title} LoadingItemCoomp={SkeletonItem} ItemCoomp={PosterItem} /></span>)
+    return(<span className="poster-items main-block"><SliderTemp apiUrl={apiUrl} title={title} LoadingItemCoomp={SkeletonItem} ItemCoomp={PosterItem} /></span>)
 }
 
 export default PosterSlider

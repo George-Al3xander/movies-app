@@ -24,15 +24,7 @@ $slideHeight: 10rem;
 }
 
 .watch-by-genre {
-  position: relative;
-
-  @media (max-width:$sm) {
-    .info {
-      //margin-block: auto 80%;
-      margin-inline: auto;
-    }    
-  }
-
+  position: relative;  
   .header-movie-info {
     margin: 0 !important;
     width: 100% !important;
@@ -45,6 +37,13 @@ $slideHeight: 10rem;
     flex-direction: column;
     gap: 1.25rem;    
   }
+  
+    @media (max-width:$sm) {
+      .info {
+        //margin-block:  40% auto;
+        margin-inline: auto;
+      }    
+    }
   .swiper-pagination-bullets {
     bottom: $pagintaion + $slideHeight;      
 } 

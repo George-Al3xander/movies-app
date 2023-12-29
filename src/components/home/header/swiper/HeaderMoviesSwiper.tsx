@@ -5,7 +5,7 @@ import { Genre, Movie, PopularMovies, PopularTvShowResult, SimilarTvShows, TV } 
 import HeaderMovieSkeleton from "../../../skeleton/HeaderMovieSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import { Alert, Container} from "@mui/material";
-import { HeaderMovieContainer, ImageHeader } from "../../../styled/styled";
+import { HeaderContainer, ImageHeader } from "../../../styled/styled";
 import HeaderMovieInfo from "./HeaderMovieInfo";
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectFade, Pagination} from 'swiper/modules';
@@ -72,10 +72,10 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
     >
         {movies?.map((movie) => {
             return <SwiperSlide key={movie.id + "header"}>
-                    <HeaderMovieContainer sx={{minHeight: "70vh"}} maxWidth="xl">
+                    <HeaderContainer sx={{minHeight: "70vh"}} maxWidth="xl">
                         <ImageHeader src={`http://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title}/>
                         <HeaderMovieInfo {...movie}/>                          
-                    </HeaderMovieContainer>
+                    </HeaderContainer>
                 
         </SwiperSlide>})}
     </Swiper>    

@@ -82,14 +82,14 @@ export const CustomContainer = styled(Box)((props) => ({
     paddingInline:  "1rem",
 }))
 
-export const HeaderMovieContainer = styled(Container)((props) => ({   
+export const HeaderContainer = styled(Container)((props) => ({   
     // [props.theme.breakpoints.up("sm")]: {
     //     maxWidth: "60%",
     //     paddingInline:  "10%",
     // },  
     // paddingBlock: "1rem",
     // paddingInline:  "1rem",
-    //minHeight: "70vh",
+    minHeight: "70vh",
     display: "flex", 
     '&::before': {
         content: '""',

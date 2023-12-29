@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material"
 import { SwiperSlide } from "swiper/react"
 import { useQuery } from "@tanstack/react-query"
 import { fetchFromTmdb } from "../../../utils"
-import { useCheckGenreMatch, useWatchGenreCtx} from "../../../hooks/useWatchGenreCtx"
+import { useCheckGenreMatch, useCurrGenreMovies, useWatchGenreCtx} from "../../../hooks/useWatchGenreCtx"
 import { useEffect, useState } from "react"
 
 
@@ -14,14 +14,16 @@ const GenrePickSlide = ({name, id}: Genre) => {
     
     const {handleClick} = useWatchGenreCtx()
     const isMatch = useCheckGenreMatch(id)
-    
+    const currRes = useCurrGenreMovies()
     const getElems = async () => await fetchFromTmdb(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=${id}`) as MovieDiscoverResult & TvShowDiscoverResult
 
     const {data, isLoading} = useQuery({queryKey: ["genre-pick-slide", id, name], queryFn: getElems})
     
     useEffect(() => {
         if(data) {
-            handleClick({name,id,results: data.results.filter((el) => el.backdrop_path) as (Movie & TV)[],index: 0})
+            if(currRes.length ==  0) {
+                handleClick({name,id,results: data.results.filter((el) => el.backdrop_path) as (Movie & TV)[],index: 0})
+            }
         }
     },[data])
     

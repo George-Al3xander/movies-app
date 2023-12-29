@@ -1,6 +1,6 @@
 import { Alert, Box, Container, Stack, Typography } from "@mui/material"
 import { useQuery } from "@tanstack/react-query"
-import { Movie, PopularMovies, TV } from "../../../types/tmdb"
+import { Movie, PopularMovies, TV } from "../../types/tmdb"
 import { Swiper, SwiperClass, SwiperRef, SwiperSlide } from "swiper/react"
 import { EffectCards, EffectFade, Thumbs } from 'swiper/modules';
 import 'swiper/css';
@@ -10,11 +10,11 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
 import { useState } from "react"
-import HeaderMovieInfo from "../header/swiper/HeaderMovieInfo"
-import {  HeaderMovieContainer, StyledSkeleton} from "../../styled/styled"
-import ItemVertical from "../../horizontal/poster/PosterItem"
-import { fetchFromTmdb } from "../../../utils";
-import  { HeaderMovieInfoSkeleton } from "../../skeleton/HeaderMovieSkeleton";
+import HeaderMovieInfo from "../home/header/swiper/HeaderMovieInfo"
+import {  HeaderContainer, StyledSkeleton} from "../styled/styled"
+import ItemVertical from "../horizontal/poster/PosterItem"
+import { fetchFromTmdb } from "../../utils";
+import  { HeaderMovieInfoSkeleton } from "../skeleton/HeaderMovieSkeleton";
 
 
 
@@ -42,8 +42,8 @@ const CardsBlock = ({apiUrl}:{apiUrl: string}) => {
     }
    
 
-    return(<Box sx={{py: 4, position: "relative", background: isLoading ? "linear-gradient(to bottom, #00925d, #526525, #503c19, #321d18, #000000)" : "initial"}} className="cards-block">
-        <HeaderMovieContainer  sx={{
+    return(<Box sx={{py: 4,my: 4, position: "relative", background: isLoading ? "linear-gradient(to bottom, #00925d, #526525, #503c19, #321d18, #000000)" : "initial"}} className="cards-block">
+        <HeaderContainer  sx={{
             alignItems: "center",
             justifyContent: {sm:"space-between"},
                      
@@ -92,7 +92,7 @@ const CardsBlock = ({apiUrl}:{apiUrl: string}) => {
                 })}
             </Swiper>
             }
-        </HeaderMovieContainer>
+        </HeaderContainer>
         
         
         
