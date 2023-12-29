@@ -10,7 +10,7 @@
 
 body {
   color: white;
-  background-color: #0D0C0F;
+  background-color: $clr-bg;
   margin: unset;
 }
 
@@ -54,6 +54,15 @@ body {
 .top-bar {
   .active {
     opacity: 1;
+  }
+}
+
+
+.custom-select {
+  .MuiOutlinedInput-notchedOutline {
+  
+    border-color: white !important;
+    color: white !important;
   }
 }
 

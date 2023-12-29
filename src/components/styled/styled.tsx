@@ -89,7 +89,8 @@ export const HContainer = styled(Container)((props) => ({
     // },  
     // paddingBlock: "1rem",
     // paddingInline:  "1rem",
-    minHeight: "70vh",    
+    minHeight: "70vh",  
+    position: "relative"  ,
     display: "flex", 
     '&::before': {
         content: '""',
@@ -97,11 +98,13 @@ export const HContainer = styled(Container)((props) => ({
         inset: '0',                   
         zIndex:"2",
         background: ``,
+        top: 0,
+        bottom: 0
     }
 }))
 
-const strongShadow = "linear-gradient(0deg, rgba(0,0,0, .9) 40%, rgba(0,0,0, .6)) 90%"
-const defaultShadow = "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .3)) 90%"
+const strongShadow = "linear-gradient(0deg, #0D0C0F 30%, rgba(0,0,0, .6)) 90%"
+const defaultShadow = "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .4)) 90%"
 
 export const HeaderContainer : FC <HeaderContainerProps> = ({shadowStrong, sx,...props}) => (<HContainer sx={{'&::before': {background: shadowStrong ? strongShadow : defaultShadow},...sx}} {...props}/>)
 
