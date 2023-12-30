@@ -3,12 +3,13 @@ import { HeaderContainer } from "../styled/styled"
  
 import HeaderBg from "../../assets/bg/stock-bg-1.jpg"
 import SelectElement from "./SelectElement"
+import useGetUpcoming from "../../hooks/useGetUpcoming"
 
 
 
 const MovieRelease = () => {
 
-
+    const {handleRegionChange} = useGetUpcoming()
 
 
     return(<Box>
@@ -26,9 +27,8 @@ const MovieRelease = () => {
             <Typography variant="h6" fontWeight={"600"} textTransform={"uppercase"}>Upcoming release</Typography>
            
             <Stack>
-              <SelectElement />
+              <SelectElement />            
             </Stack>
-           
         </Box>
         </Container>
     </Box>)

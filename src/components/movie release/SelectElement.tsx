@@ -27,7 +27,7 @@ const SelectElement : FC<SelectProps> = ({onChange}) => {
     ].sort()
 
     const dates = [0,1,2].map((num) => new Date().getFullYear() + num)
-    console.log(dates)
+    //console.log(dates)
 
     return(<FormControl sx={{ m: 1, minWidth: 120 , input: {
         color: "white"
@@ -41,7 +41,7 @@ const SelectElement : FC<SelectProps> = ({onChange}) => {
           sx={{borderColor: "white", color: "white"}}
           onChange={(e) => {
             setAge(e.target.value)
-            console.log(e.name)
+            
           }}
         >
         <MenuItem value="">
