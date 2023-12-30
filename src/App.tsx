@@ -19,8 +19,8 @@ function App() {
       <TrailerWindow />
       <TopBar />        
           <Routes>
-              <Route element={<Home />} path="/"/>
-              <Route element={<MovieRelease />} path="/upcoming"/>
+              {/* <Route element={<Home />} path="/"/> */}
+              <Route element={<MovieRelease />} path="/"/*"/upcoming"*//>
           </Routes>   
       <Footer />   
     </Box>)
