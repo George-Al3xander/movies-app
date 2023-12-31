@@ -1,59 +1,52 @@
-import { Autocomplete, Box, FormControl, InputLabel, MenuItem, Select, SelectProps, TextField } from "@mui/material"
-import { FC, useState } from "react"
+import { Autocomplete, Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, SelectProps, TextField } from "@mui/material"
+import { FC, useEffect, useState } from "react"
 import iso from "iso-3166-1"
 
 
 interface Props  extends SelectProps{
-
+    onChangeFunc:Function,
+    name: string,
+    defaultValue?: string | number
 }
 
 
 
 
-const SelectElement : FC<SelectProps> = ({onChange}) => {
-    const [age, setAge] = useState("")
+const SelectElement : FC<Props> = ({onChangeFunc,name,defaultValue,children}) => {
+    const [value, setValue] = useState<string | number>(defaultValue ? defaultValue : "")
     
-   
-    const countries = [
-      "UKRAINE",
-      "FRANCE",
-      "SPAIN",
-      "UNITED STATES OF AMERICA",
-      "ITALY",      
-      "JAPAN",
-      "POLAND",
-      "NETHERLANDS",
-      "GREECE",
-    ].sort()
+    const handleChange = (e: SelectChangeEvent<number | string>) => {
+      setValue(e.target.value);     
+      onChangeFunc(e)  
+    }
 
-    const dates = [0,1,2].map((num) => new Date().getFullYear() + num)
-    //console.log(dates)
+    
 
-    return(<FormControl sx={{ m: 1, minWidth: 120 , input: {
+    return(<FormControl size="small" sx={{minWidth: "20ch", input: {
         color: "white"
     }}} className="custom-select" fullWidth>        
         <Select
           displayEmpty
-         
-          id="demo-simple-select"
-          value={age}          
+          id={`select-release-date-${name}`}
+          value={value}          
           color="info"
-          sx={{borderColor: "white", color: "white"}}
-          onChange={(e) => {
-            setAge(e.target.value)
-            
+          sx={{
+            color: "white",
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'rgba(228, 219, 233, 0.25)',
+            },
+            '.MuiSvgIcon-root ': {
+              fill: "white !important",
+            }
           }}
-        >
-        <MenuItem value="">
-            <em>Worldwide</em>
-          </MenuItem>
-          {countries.map((name) => {
-           const country = iso.whereCountry(name)
-           if(!country) return null
-       
-           return <MenuItem value={country.alpha2}>{country.country}</MenuItem>
-          })}
-        </Select>
+          onChange={handleChange}         
+        >{children}</Select>
       </FormControl>)
 }
 
