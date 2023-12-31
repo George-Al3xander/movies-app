@@ -3,7 +3,7 @@ import { fetchFromTmdb } from "../utils"
 import { useEffect, useState } from "react"
 import { RVTool } from "regex-validation-tool"
 import { SelectChangeEvent } from "@mui/material"
-import { MovieDiscoverResult } from "../types/tmdb"
+import { MovieDiscoverResult, TvShowDiscoverResult } from "../types/tmdb"
 import { UpcomingElemnt } from "../types/type"
 import moment from "moment"
 
@@ -41,8 +41,8 @@ const useGetUpcoming = () => {
     const [year, setYear] = useState(new Date().getFullYear())
     const [result,setResult] = useState<UpcomingElemnt[]>([])
     const apiLink = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc${handleBlank(region, "&watch_region=")}${handleYear(year)}`
-    const fetch = async () => await fetchFromTmdb(apiLink) as MovieDiscoverResult
-    const [isEmpty, setIsEmpty] = useState(true)
+    const fetch = async () => await fetchFromTmdb(apiLink) as MovieDiscoverResult 
+    const [isEmpty, setIsEmpty] = useState(false)
     const handleRegionChange = (e: SelectChangeEvent<string>) => {
         setRegion(e.target.value)
     }

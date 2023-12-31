@@ -1,0 +1,17 @@
+$newHeight: 7rem;
+
+.movie-release{
+    .ordered-item {    
+        gap: 1.25rem;
+        
+        .info-wrapper {     
+            height: $newHeight;
+        }
+        
+        img {
+            max-height: $newHeight;     
+            max-width: $newHeight;  
+        }
+    }    
+}
+

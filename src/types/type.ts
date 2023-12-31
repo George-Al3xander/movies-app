@@ -1,7 +1,7 @@
 import { ContainerProps, StackProps, TypographyProps } from "@mui/material";
 import { ButtonHTMLAttributes, ComponentType, ReactPropTypes } from "react";
 import { SwiperProps } from "swiper/react";
-import { Movie } from "./tmdb";
+import { Movie, TV } from "./tmdb";
 
 export interface GenresProps extends TypographyProps {
     genre_ids:  number[],
@@ -47,5 +47,5 @@ export interface HeaderContainerProps extends ContainerProps {
 
 export interface UpcomingElemnt {
     month: string,
-    results: Movie[]
+    results: (Movie & TV)[]
 }

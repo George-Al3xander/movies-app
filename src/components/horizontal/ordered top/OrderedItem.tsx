@@ -11,7 +11,13 @@ const OrderedItem = ({title,name, poster_path,genre_ids, vote_average, release_d
 
     return(<Box className="ordered-item">
         {index != undefined && <Typography fontWeight={700} sx={{alignSelf: "center"}} variant="h1">{index + 1}</Typography>}
+        {poster_path? 
         <img  src={`http://image.tmdb.org/t/p/w300${poster_path}`} alt={title ? title : name}/>
+        :
+        <Box sx={{borderRadius: 1, display: "flex",justifyContent: "center",alignItems: "center", height: "100%", width: "5rem", background: "linear-gradient(to bottom, #00925d, #526525, #503c19, #321d18, #000000)"}}>
+            <Typography  fontSize={14} textTransform="uppercase" fontStyle="italic"  variant="caption">No poster </Typography>
+        </Box>
+        }
         <Box  className="info-wrapper">          
            <Stack direction={"row"} spacing={1}>
                 {[media_type as string,  release_date as string].map((el,index) => {
@@ -30,8 +36,12 @@ const OrderedItem = ({title,name, poster_path,genre_ids, vote_average, release_d
                     maxWidth: "100%",
                     overflowWrap: "break-word" 
                 }} variant="h5">{title ? title : name}</Typography>
-                <Genres fontSize={16} genre_ids={genre_ids}/>
+                <Genres isTv={title == undefined} fontSize={16} genre_ids={genre_ids}/>
+                {vote_average > 0 ?
                 <MovieRating fontSize={16}>{vote_average}</MovieRating>
+                :
+                <Typography sx={{opacity: ".5"}} textTransform={"uppercase"} variant="caption">Not yet rated</Typography>
+                }
            </Box>
         </Box>
         
