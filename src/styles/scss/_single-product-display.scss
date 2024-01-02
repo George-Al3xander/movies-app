@@ -1,10 +1,31 @@
 .cast-display {
     .swiper-slide {
         max-width: 200px;
-        margin-block: auto;
+        display: flex;
+        
        
     }
-
+    .swiper {
+        height: 100px;
+    }
    
     
+}
+
+.seasons-display {
+    .swiper-slide {
+        max-width: 20rem;
+    }
+}
+
+.seasons-display a{
+    width: min-content;
+    white-space: nowrap;    
+    transition: all .5s ease;
+    &:hover {
+        transition: all .5s ease;
+        text-decoration: underline;
+        color: $clr-primary;        
+        cursor: pointer;
+    }
 }

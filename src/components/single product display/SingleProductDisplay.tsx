@@ -6,19 +6,21 @@ import { BelongsToCollection, Movie, MovieDetails, TV, TvShowDetails } from "../
 import SDPHeader from "./SPDHeader"
 import CastDisplay from "./CastDisplay"
 import BackdropSlider from "../horizontal/backdrop/BackdropSlider"
+import SDPTabs from "./SDPTabs"
 
 
 
 const Collection = (props:BelongsToCollection | undefined) => {
-    if(props == undefined) return null
+    if(props == undefined || Object.keys(props).length == 0) return null
     const {name,id} = props
+      
     return (<BackdropSlider  title={name} apiUrl={`https://api.themoviedb.org/3/collection/${id}`} />)
 }
 
 
 const  SingleProductDisplay = () => {
     const path = window.location.hash.replace("#", "")
-    
+    const {id} = useParams();
     const apiLink = `https://api.themoviedb.org/3${path}`
     const fetch = async () => await fetchFromTmdb(apiLink)  as MovieDetails & TvShowDetails 
     const {data,isLoading,isError} = useQuery({queryKey: ["single-product-display", path, apiLink], queryFn: fetch})
@@ -26,7 +28,7 @@ const  SingleProductDisplay = () => {
     if(isLoading) return "Loading..."
     if(isError) return "ERORR"
     const {overview} = data!
-    return(<Box>       
+    return(<Box  key={`single-product-${id}`}>       
        <SDPHeader product={data!} />
        <Container sx={{mt:4}} maxWidth="xl">
             <Stack direction={"column"} spacing={2}>
@@ -34,8 +36,9 @@ const  SingleProductDisplay = () => {
                 <Typography sx={{opacity: ".7"}} variant="subtitle1" fontSize={16}>{overview}</Typography>
             </Stack> 
             <CastDisplay apiLink={apiLink}/>
+            <SDPTabs data={data} apiLink={apiLink}/>
             <Collection {...data!.belongs_to_collection!}/>
-            <BackdropSlider apiUrl={`${apiLink}/similar`} title="Simillar Movies for you"/>
+            <BackdropSlider apiUrl={`${apiLink}/recommendations`} title="Simillar Movies for you"/>
        </Container>       
     </Box>)
 }

@@ -1,5 +1,5 @@
 import {Box} from "@mui/material"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useParams } from "react-router-dom"
 import Home from "./components/home/Home"
 import TrailerWindow from "./components/TrailerWindow";
 import "./styles/scss/index.scss"
@@ -10,7 +10,12 @@ import SingleProductDisplay from "./components/single product display/SingleProd
 
 
 
-
+const Test = () => {
+    const {id,seasonNumber} = useParams()
+ return <div>
+    {seasonNumber!}
+ </div>
+}
 
 
 function App() {
@@ -23,7 +28,8 @@ function App() {
               <Route element={<Home />} path="/"/>
               {/* <Route element={<MovieRelease />} path="/upcoming"/> */}
               <Route element={<SingleProductDisplay />} path="/movie/:id"/>
-              <Route element={<SingleProductDisplay />} path="/tv/:id"/>
+              <Route element={<SingleProductDisplay />}  path="/tv/:id" />
+            <Route path="/tv/:id/seasons/:seasonNumber" element={<Test />}/>
           </Routes>   
       <Footer />   
     </Box>)

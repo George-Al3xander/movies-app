@@ -1,4 +1,4 @@
-import { Box, Container, Skeleton, Stack, Typography, styled } from "@mui/material";
+import { Box, Container, Skeleton, Stack, Tab, Typography, styled } from "@mui/material";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa";
 import { CustomSwiperBtnProps, GenresProps, HeaderContainerProps, RatingProps, StyledGridSliderProps } from "../../types/type";
@@ -164,3 +164,7 @@ export const StyledGridSlider : FC<StyledGridSliderProps> = ({rows,className,...
 
 export const CustomSwiperBtn : FC<CustomSwiperBtnProps> = ({prev, ...props}) => (
 <button {...props}   className={`custom-swiper-btn custom-swiper-btn-${prev ? "prev" : "next"}`} />)
+
+
+
+export const StyledTab = styled(Tab)(() => ({"&.Mui-selected": {color:"white"},color: "gray"}))
