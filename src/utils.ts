@@ -8,8 +8,11 @@ export const fetchOptions = {
 
   
 
-  export const fetchFromTmdb = async (apiUrl: string) => {
-    const response = await fetch(apiUrl, fetchOptions)
-    const data = await response.json()
-    return data
+  export const fetchFromTmdb = async (apiUrl: string) => {    
+      const response = await fetch(apiUrl, fetchOptions)
+      if(response.status == 200) {
+        const data = await response.json()
+        return data
+      }
+      return
   }

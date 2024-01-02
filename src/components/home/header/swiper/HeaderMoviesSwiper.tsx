@@ -24,7 +24,7 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
         } catch (error) {            
             return [] as Genre[]
         }
-      }
+    }
 
     const getGenres = async () => {      
         try {

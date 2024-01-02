@@ -50,7 +50,7 @@ const useGetUpcoming = () => {
     const handleYearChange = (e: SelectChangeEvent<number>) => {
         setYear(e.target.value as number)
     }
-    const {data,isLoading,isRefetching, isError, refetch} = useQuery({queryKey: ["upcoming", "upcoming-hook"], queryFn: fetch})
+    const {data,isLoading,isRefetching, isError, refetch} = useQuery({queryKey: ["upcoming", "upcoming-hook"], queryFn: fetch, refetchOnWindowFocus: false})
     
     useEffect(() => {
         if(!isLoading) {
