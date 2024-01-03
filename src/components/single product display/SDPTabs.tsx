@@ -1,9 +1,12 @@
 import { Box, Stack, Tab, Tabs, Typography } from "@mui/material"
 import { FC, useState } from "react"
 import { StyledSlider, StyledTab } from "../styled/styled";
-import { Movie, MovieDetails, TV, TvShowDetails } from "../../types/tmdb";
+import { Credits, Movie, MovieDetails, TV, TvShowDetails } from "../../types/tmdb";
 import { SwiperSlide } from "swiper/react";
 import SeasonsDisplay from "./SeasonsDisplay";
+import PeopleDisplay from "./PeopleDisplay";
+import BackdropSlider from "../horizontal/backdrop/BackdropSlider";
+import ReviewsDisplay from "./ReviewsDisplay";
 
 
 interface TabPanelProps {
@@ -14,7 +17,7 @@ interface TabPanelProps {
 
 interface SDPTabsProps {
     apiLink: string,
-    data?: MovieDetails &  TvShowDetails
+    data?: MovieDetails &  TvShowDetails & {credits:Credits}
 }
 
 const TabPanel : FC<TabPanelProps> = ({children,index, currIndex}) =>  {
@@ -30,34 +33,29 @@ const SDPTabs: FC<SDPTabsProps> = ({data,apiLink}) => {
 
     const [currIndex, setCurrIndex] = useState(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (__event: React.SyntheticEvent, newValue: number) => {
         setCurrIndex(newValue);
       };
 
     return(<Stack>
         <Tabs color="white" TabScrollButtonProps={{style: {color:'red'}}}  textColor={"primary"} value={currIndex} onChange={handleChange} aria-label="basic tabs example">
-            <StyledTab  label={data!.name ?
-            data!.seasons!.length > 0 ?
+            <StyledTab  label={
+            data!.name && data!.seasons!.length > 0 ?
             "Seasons"
-            :
-            "Tv series with no seasons"
-            :
-            "Movie"
+            :            
+            "if you loved the cast"
         }  />
-            <StyledTab  label="Item Two"  />
+            <StyledTab  label="crew"  />
             <StyledTab  label="Reviews"  />
         </Tabs>        
         <TabPanel index={0} currIndex={currIndex}>
-        {data!.name ?
-            data!.seasons!.length > 0 ?
+        {data!.name &&  data!.seasons!.length > 0 ?            
             <SeasonsDisplay  seasons={data?.seasons!}/>
-            :
-            "Tv series with no seasons"
-            :
-            "Movie"
+            :                 
+            <BackdropSlider apiUrl={`https://api.themoviedb.org/3/discover/${data?.title ? "movie" : "tv"}?with_cast=${data!.credits.cast.slice(0,8).map((person) => person.id).toString().split(',').join('|')}`} />
         }</TabPanel>
-        <TabPanel index={1} currIndex={currIndex}>{apiLink} 1</TabPanel>
-        <TabPanel index={2} currIndex={currIndex}>{apiLink} 2</TabPanel>
+        <TabPanel index={1} currIndex={currIndex}><PeopleDisplay  apiLink={`${apiLink}/credits`} crew/> </TabPanel>
+        <TabPanel index={2} currIndex={currIndex}><ReviewsDisplay apiLink={apiLink} /></TabPanel>
 
     </Stack>)
 }

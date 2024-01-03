@@ -1,5 +1,5 @@
 import {Box} from "@mui/material"
-import { Route, Routes, useParams } from "react-router-dom"
+import { Route, Routes, useParams, useSearchParams } from "react-router-dom"
 import Home from "./components/home/Home"
 import TrailerWindow from "./components/TrailerWindow";
 import "./styles/scss/index.scss"
@@ -11,7 +11,10 @@ import SingleProductDisplay from "./components/single product display/SingleProd
 
 
 const Test = () => {
-    const {id,seasonNumber} = useParams()
+    const {id,seasonNumber} = useParams()    
+    //Works for the review page pagination
+    // const [searchParams, setSearchParams] = useSearchParams();
+    // console.log(searchParams.get("page"))
  return <div>
     {seasonNumber!}
  </div>
@@ -29,6 +32,8 @@ function App() {
               {/* <Route element={<MovieRelease />} path="/upcoming"/> */}
               <Route element={<SingleProductDisplay />} path="/movie/:id"/>
               <Route element={<SingleProductDisplay />}  path="/tv/:id" />
+              <Route element={<SingleProductDisplay />} path="/movie/:id/reviews"/>
+              <Route element={<SingleProductDisplay />}  path="/tv/:id/reviews" />
             <Route path="/tv/:id/seasons/:seasonNumber" element={<Test />}/>
           </Routes>   
       <Footer />   

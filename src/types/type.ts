@@ -19,10 +19,10 @@ export interface RatingProps extends StackProps {
 
 export interface SliderTempProps extends  SwiperProps {
     apiUrl:string, 
-    title: string,
+    title?: string,
     LoadingItemCoomp: ComponentType<any>,
-    ItemCoomp: ComponentType<any>,
-    vertical?: boolean
+    ItemCoomp: ComponentType<any>,    
+    customKey?: string
 }
 
 export interface GridSliderProps extends SliderTempProps {

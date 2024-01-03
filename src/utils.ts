@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const fetchOptions = {
     method: 'GET',
     headers: {
@@ -8,11 +10,35 @@ export const fetchOptions = {
 
   
 
-  export const fetchFromTmdb = async (apiUrl: string) => {    
-      const response = await fetch(apiUrl, fetchOptions)
-      if(response.status == 200) {
-        const data = await response.json()
-        return data
-      }
-      return
-  }
+export const fetchFromTmdb = async (apiUrl: string) => {    
+    const response = await fetch(apiUrl, fetchOptions)
+    if(response.status == 200) {
+      const data = await response.json()
+      return data
+    }
+    return
+}
+
+
+export const checkKey = (obj: any) => {
+  const keys = ["results", "cast", "parts"]
+
+  let fin = keys.map((el) => el in obj)
+  console.log(obj)
+
+  return obj[keys[fin.indexOf(true)]]
+  
+}
+
+export const displayTime = (time: number) => {
+  
+  const date = moment.utc().startOf('day').add({minutes: time})
+  const  hours = date.hours();
+  const  minutes = date.minutes();
+
+  if(hours > 0) {
+    return `${hours}h${minutes}m`      
+  }  
+  return `${minutes}m`  
+
+}

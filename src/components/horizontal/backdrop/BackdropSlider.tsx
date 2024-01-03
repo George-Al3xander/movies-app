@@ -14,7 +14,7 @@ const SkeletonItem = () => (<Stack spacing={2}>
 
 
 
-const BackdropSlider = ({apiUrl, title}:{apiUrl:string,title: string}) => {   
+const BackdropSlider = ({apiUrl, title}:{apiUrl:string,title?: string}) => {   
     return(<span className="backdrop-items"><SliderTemp apiUrl={apiUrl} title={title} ItemCoomp={BackdropItem} LoadingItemCoomp={SkeletonItem}/></span>)
 }
 

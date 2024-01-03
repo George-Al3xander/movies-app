@@ -2,9 +2,9 @@ import { Box, Container, Stack, Typography } from "@mui/material"
 import { useParams } from "react-router-dom"
 import { fetchFromTmdb } from "../../utils"
 import { useQuery } from "@tanstack/react-query"
-import { BelongsToCollection, Movie, MovieDetails, TV, TvShowDetails } from "../../types/tmdb"
+import { AppendToResponse, AppendToResponseMovieKey, BelongsToCollection, Credits, Movie, MovieDetails, TV, TvShowDetails } from "../../types/tmdb"
 import SDPHeader from "./SPDHeader"
-import CastDisplay from "./CastDisplay"
+import PeopleDisplay from "./PeopleDisplay"
 import BackdropSlider from "../horizontal/backdrop/BackdropSlider"
 import SDPTabs from "./SDPTabs"
 
@@ -22,9 +22,9 @@ const  SingleProductDisplay = () => {
     const path = window.location.hash.replace("#", "")
     const {id} = useParams();
     const apiLink = `https://api.themoviedb.org/3${path}`
-    const fetch = async () => await fetchFromTmdb(apiLink)  as MovieDetails & TvShowDetails 
+    
+    const fetch = async () => await fetchFromTmdb(apiLink+"?append_to_response=credits")  as MovieDetails & TvShowDetails & {credits:Credits}
     const {data,isLoading,isError} = useQuery({queryKey: ["single-product-display", path, apiLink], queryFn: fetch})
-   
     if(isLoading) return "Loading..."
     if(isError) return "ERORR"
     const {overview} = data!
@@ -35,7 +35,7 @@ const  SingleProductDisplay = () => {
                 <Typography variant="h6">Story line</Typography>
                 <Typography sx={{opacity: ".7"}} variant="subtitle1" fontSize={16}>{overview}</Typography>
             </Stack> 
-            <CastDisplay apiLink={apiLink}/>
+            <PeopleDisplay title="Top Cast" apiLink={`${apiLink}/credits`}/>
             <SDPTabs data={data} apiLink={apiLink}/>
             <Collection {...data!.belongs_to_collection!}/>
             <BackdropSlider apiUrl={`${apiLink}/recommendations`} title="Simillar Movies for you"/>
