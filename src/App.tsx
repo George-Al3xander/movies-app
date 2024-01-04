@@ -10,6 +10,7 @@ import SingleProductDisplay from "./components/single product display/SingleProd
 import Err404 from "./components/Err404";
 import useFetchGenre from "./hooks/useFetchGenres";
 import { PropagateLoader } from "react-spinners";
+import SeasonPage from "./components/season page/SeasonPage";
 
 
 
@@ -32,7 +33,7 @@ function App() {
         <PropagateLoader color="var(--clr-primary)"/>
     </Stack>
 
-    
+
     return (<Box>      
       <TrailerWindow />
       <TopBar />        
@@ -43,7 +44,7 @@ function App() {
               <Route element={<SingleProductDisplay />}  path="/tv/:id" />
               <Route element={<SingleProductDisplay />} path="/movie/:id/reviews"/>
               <Route element={<SingleProductDisplay />}  path="/tv/:id/reviews" />
-              <Route element={<Test />} path="/tv/:id/seasons/:seasonNumber" />
+              <Route element={<SeasonPage />} path="/tv/:id/seasons/:seasonNumber" />
               <Route element={<Err404 />} path="*"/>
           </Routes>   
       <Footer />   
