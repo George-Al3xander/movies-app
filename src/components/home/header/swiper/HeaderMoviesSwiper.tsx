@@ -15,30 +15,9 @@ import 'swiper/css/pagination';
 
 
 const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
-    const setGenresTv = useSetRecoilState(genresTv$)
-    const setGenresMovie = useSetRecoilState(genresMovie$)
+    
 
-    const fetchGenre = async (link: string) => {
-        try {
-          return (await (await fetchFromTmdb(link))).genres as Genre[]   
-        } catch (error) {            
-            return [] as Genre[]
-        }
-    }
-
-    const getGenres = async () => {      
-        try {
-            const movie = await fetchGenre('https://api.themoviedb.org/3/genre/movie/list?language=en')
-            const tv = await fetchGenre('https://api.themoviedb.org/3/genre/tv/list?language=en')
-            setGenresMovie(movie)         
-            setGenresTv(tv)         
-        } catch (error) {
-            console.log(error)
-        }            
-    }
-
-    const getMovies =  async () => {
-        await getGenres()       
+    const getMovies =  async () => {         
         const data = await fetchFromTmdb(apiUrl) as PopularMovies | SimilarTvShows
         return data.results.slice(0,6) as (Movie & TV)[]
     }

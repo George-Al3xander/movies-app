@@ -17,7 +17,7 @@ export const genreNamesMovies$ = selectorFamily({
     get: ((arr: number[]) => ({get}) => {
         const genres = get(genresMovie$);        
         return arr.map((num) => {
-            const item = genres[num]
+            const item = genres.find(({id}) => num == id)
             if(item) {
                 return item.name
             }
@@ -30,7 +30,7 @@ export const genreNamesTv$ = selectorFamily({
     get: ((arr: number[]) => ({get}) => {
         const genres = get(genresTv$);        
         return arr.map((num) => {
-            const item = genres[num]
+            const item = genres.find(({id}) => num == id)
             if(item) {                
                 return item.name
             }

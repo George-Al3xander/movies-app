@@ -43,7 +43,7 @@ export interface CustomSwiperBtnProps extends ButtonHTMLAttributes<HTMLButtonEle
 }
 
 export interface HeaderContainerProps extends ContainerProps {
-    shadowStrong?: boolean
+    shadowStrong?: boolean,  
 }
 
 export interface UpcomingElemnt {

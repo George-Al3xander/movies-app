@@ -20,8 +20,6 @@ interface SDPTabsProps {
     data?: MovieDetails &  TvShowDetails & {credits:Credits}
 }
 
-
-
 const TabPanel : FC<TabPanelProps> = ({children,index, currIndex}) =>  {
     if(currIndex != index) return null    
     return(<Box sx={{my: "2rem"}}>{children}</Box>)
@@ -30,7 +28,7 @@ const TabPanel : FC<TabPanelProps> = ({children,index, currIndex}) =>  {
 
 const SDPTabs: FC<SDPTabsProps> = ({data,apiLink}) => {
 
-    const [currIndex, setCurrIndex] = useState(2);
+    const [currIndex, setCurrIndex] = useState(0);
 
     const handleChange = (__event: React.SyntheticEvent, newValue: number) => {
         setCurrIndex(newValue);

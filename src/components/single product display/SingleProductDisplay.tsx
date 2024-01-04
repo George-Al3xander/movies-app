@@ -8,6 +8,7 @@ import PeopleDisplay from "./PeopleDisplay"
 import BackdropSlider from "../horizontal/backdrop/BackdropSlider"
 import SDPTabs from "./SDPTabs"
 import { PropagateLoader} from "react-spinners"
+import Err404 from "../Err404"
 
 
 
@@ -26,10 +27,10 @@ const  SingleProductDisplay = () => {
     
     const fetch = async () => await fetchFromTmdb(apiLink+"?append_to_response=credits")  as MovieDetails & TvShowDetails & {credits:Credits}
     const {data,isLoading,isError} = useQuery({queryKey: ["single-product-display", path, apiLink], queryFn: fetch})
-    if(isLoading) return <Stack justifyContent={"center"} alignItems={"center"} width={"100vw"} height={"40vw"}>
+    if(isLoading) return <Stack justifyContent={"center"} alignItems={"center"} width={"100vw"} height={"80vh"}>
         <PropagateLoader color="var(--clr-primary)"/>
     </Stack>
-    if(isError) return "ERORR"
+    if(isError) return <Err404 />
     const {overview} = data!
     return(<Box  key={`single-product-${id}`}>       
        <SDPHeader product={data!} />

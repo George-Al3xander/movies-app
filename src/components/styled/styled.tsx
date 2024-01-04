@@ -90,10 +90,10 @@ export const HContainer = styled(Container)((props) => ({
     // paddingBlock: "1rem",
     // paddingInline:  "1rem",
     minHeight: "70vh",  
-    position: "relative"  ,
+    position: "relative",
     display: "flex", 
     '&::before': {
-        content: '""',
+        content: '""',        
         position: "absolute",
         inset: '0',                   
         zIndex:"2",
@@ -125,8 +125,7 @@ export const TopBarContainer = styled(Box)((props) => ({
     top: 0,
     left: 0,
     "&::hover": {
-    transition: "background-color .5s ease-in-out",    
-
+        transition: "background-color .5s ease-in-out",
     },
     transition: "background-color .5s ease-in-out",    
 }))

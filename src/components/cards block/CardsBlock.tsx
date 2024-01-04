@@ -44,6 +44,7 @@ const CardsBlock = ({apiUrl}:{apiUrl: string}) => {
 
     return(<Box sx={{py: 4,my: 4, position: "relative", background: isLoading ? "linear-gradient(to bottom, #00925d, #526525, #503c19, #321d18, #000000)" : "initial"}} className="cards-block">
         <HeaderContainer  sx={{
+            position: "initial",
             alignItems: "center",
             justifyContent: {sm:"space-between"},
                      
@@ -74,8 +75,7 @@ const CardsBlock = ({apiUrl}:{apiUrl: string}) => {
             </Box>
             {isLoading ?
             <StyledSkeleton height={400} variant="rounded" width={300}/>
-            :
-        
+            :        
             <Swiper
                 effect={'cards'}
                 grabCursor={true}
