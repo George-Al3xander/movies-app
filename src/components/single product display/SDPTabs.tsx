@@ -6,7 +6,7 @@ import { SwiperSlide } from "swiper/react";
 import SeasonsDisplay from "./SeasonsDisplay";
 import PeopleDisplay from "./PeopleDisplay";
 import BackdropSlider from "../horizontal/backdrop/BackdropSlider";
-import ReviewsDisplay from "./ReviewsDisplay";
+import ReviewsDisplay from "./review/ReviewsDisplay";
 
 
 interface TabPanelProps {
@@ -31,7 +31,7 @@ const TabPanel : FC<TabPanelProps> = ({children,index, currIndex}) =>  {
 
 const SDPTabs: FC<SDPTabsProps> = ({data,apiLink}) => {
 
-    const [currIndex, setCurrIndex] = useState(0);
+    const [currIndex, setCurrIndex] = useState(2);
 
     const handleChange = (__event: React.SyntheticEvent, newValue: number) => {
         setCurrIndex(newValue);

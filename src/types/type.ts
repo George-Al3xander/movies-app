@@ -14,6 +14,7 @@ export interface GenresProps extends TypographyProps {
 export interface RatingProps extends StackProps {
         children:  number,
         svgSize?: number,
+        outOf?: boolean
         
 }
 

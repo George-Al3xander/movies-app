@@ -39,11 +39,11 @@ export const Genres : FC<GenresProps> = ({genre_ids,before,after,variant="captio
 }
 
 
-export const MovieRating : FC<RatingProps> = ({children,spacing = .5,fontSize = 12,svgSize = 12, ...props}) => {
+export const MovieRating : FC<RatingProps> = ({children,spacing = .5,fontSize = 12,svgSize = 12,outOf, ...props}) => {
     
     return(<Stack alignItems={"center"}  direction={"row"} spacing={spacing} {...props}>
             <FaStar size={svgSize} style={{fill: "gold"}}/>
-            <Typography variant="caption" fontSize={fontSize}>{children.toFixed(1)}</Typography>
+            <Typography variant="caption" fontSize={fontSize}>{Math.floor(children) == children ? children : children.toFixed(1)} {outOf && " / 10"}</Typography>
         </Stack>)
 }
 
@@ -103,8 +103,8 @@ export const HContainer = styled(Container)((props) => ({
     }
 }))
 
-const strongShadow = "linear-gradient(0deg, #0D0C0F 30%, rgba(0,0,0, .6)) 90%"
-const defaultShadow = "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .4)) 90%"
+export const strongShadow = "linear-gradient(0deg, #0D0C0F 30%, rgba(0,0,0, .6)) 90%"
+export const defaultShadow = "linear-gradient(0deg, rgba(0,0,0, .7) 40%, rgba(0,0,0, .4)) 90%"
 
 export const HeaderContainer : FC <HeaderContainerProps> = ({shadowStrong, sx,...props}) => (<HContainer sx={{'&::before': {background: shadowStrong ? strongShadow : defaultShadow},...sx}} {...props}/>)
 

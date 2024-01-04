@@ -22,9 +22,7 @@ export const fetchFromTmdb = async (apiUrl: string) => {
 
 export const checkKey = (obj: any) => {
   const keys = ["results", "cast", "parts"]
-
-  let fin = keys.map((el) => el in obj)
-  console.log(obj)
+  let fin = keys.map((el) => el in obj)  
 
   return obj[keys[fin.indexOf(true)]]
   
