@@ -20,11 +20,10 @@ interface SDPTabsProps {
     data?: MovieDetails &  TvShowDetails & {credits:Credits}
 }
 
+
+
 const TabPanel : FC<TabPanelProps> = ({children,index, currIndex}) =>  {
-
-    if(currIndex != index) return null
-
-    
+    if(currIndex != index) return null    
     return(<Box sx={{my: "2rem"}}>{children}</Box>)
 }
 

@@ -2,11 +2,12 @@ import { Box, Container, Stack, Typography } from "@mui/material"
 import { useParams } from "react-router-dom"
 import { fetchFromTmdb } from "../../utils"
 import { useQuery } from "@tanstack/react-query"
-import { AppendToResponse, AppendToResponseMovieKey, BelongsToCollection, Credits, Movie, MovieDetails, TV, TvShowDetails } from "../../types/tmdb"
+import { BelongsToCollection, Credits, MovieDetails,  TvShowDetails } from "../../types/tmdb"
 import SDPHeader from "./SPDHeader"
 import PeopleDisplay from "./PeopleDisplay"
 import BackdropSlider from "../horizontal/backdrop/BackdropSlider"
 import SDPTabs from "./SDPTabs"
+import { PropagateLoader} from "react-spinners"
 
 
 
@@ -25,7 +26,9 @@ const  SingleProductDisplay = () => {
     
     const fetch = async () => await fetchFromTmdb(apiLink+"?append_to_response=credits")  as MovieDetails & TvShowDetails & {credits:Credits}
     const {data,isLoading,isError} = useQuery({queryKey: ["single-product-display", path, apiLink], queryFn: fetch})
-    if(isLoading) return "Loading..."
+    if(isLoading) return <Stack justifyContent={"center"} alignItems={"center"} width={"100vw"} height={"40vw"}>
+        <PropagateLoader color="var(--clr-primary)"/>
+    </Stack>
     if(isError) return "ERORR"
     const {overview} = data!
     return(<Box  key={`single-product-${id}`}>       
