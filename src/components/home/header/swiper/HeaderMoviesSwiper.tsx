@@ -1,10 +1,8 @@
-import { useSetRecoilState } from "recoil";
-import { genresMovie$, genresTv$ } from "../../../../state/atoms/data";
-import { fetchFromTmdb, fetchOptions } from "../../../../utils";
-import { Genre, Movie, PopularMovies, PopularTvShowResult, SimilarTvShows, TV } from "../../../../types/tmdb";
+import { fetchFromTmdb,  tmdbImage } from "../../../../utils";
+import { Movie, PopularMovies,  SimilarTvShows, TV } from "../../../../types/tmdb";
 import HeaderMovieSkeleton from "../../../skeleton/HeaderMovieSkeleton";
 import { useQuery } from "@tanstack/react-query";
-import { Alert, Container} from "@mui/material";
+import { Alert} from "@mui/material";
 import { HeaderContainer, ImageHeader } from "../../../styled/styled";
 import HeaderMovieInfo from "./HeaderMovieInfo";
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -52,7 +50,7 @@ const HeaderMoviesSwiper = ({apiUrl}:{apiUrl: string}) => {
         {movies?.map((movie) => {
             return <SwiperSlide key={movie.id + "header"}>
                     <HeaderContainer sx={{minHeight: "70vh"}} maxWidth="xl">
-                        <ImageHeader src={`http://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title}/>
+                        <ImageHeader src={tmdbImage(movie.backdrop_path)} alt={movie.title}/>
                         <HeaderMovieInfo {...movie}/>                          
                     </HeaderContainer>
                 

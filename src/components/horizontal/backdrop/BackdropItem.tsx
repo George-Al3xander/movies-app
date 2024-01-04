@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { Images, Movie,  TV} from "../../../types/tmdb"
 import {  Box, Stack, Typography } from "@mui/material"
 import { Genres, MovieRating, StyledSkeleton} from "../../styled/styled"
-import { fetchFromTmdb } from "../../../utils"
+import { fetchFromTmdb, tmdbImage } from "../../../utils"
 import { NavLink } from "react-router-dom"
 
 
@@ -25,7 +25,7 @@ const BackdropItem = ({backdrop_path, vote_average, genre_ids,title, name, id}: 
         :
         backdrop_path ?
 
-        <img style={{borderRadius: "1rem"}}   src={`http://image.tmdb.org/t/p/w500${(data?.length! == 0 || isError) ?  backdrop_path : data![0]!.file_path}`} alt={title ? title : name} />
+        <img style={{borderRadius: "1rem"}}   src={tmdbImage((data?.length! == 0 || isError) ?  backdrop_path : data![0]!.file_path, 500)} alt={title ? title : name} />
         :
         <Box sx={{borderRadius: 1, display: "flex",justifyContent: "center",alignItems: "center", width: "100%", minHeight: "10rem",height: "100%", background: "linear-gradient(to bottom, #00925d, #526525, #503c19, #321d18, #000000)"}}>
                 <Typography  fontSize={18} textTransform="uppercase" fontStyle="italic" variant="subtitle2">No poster</Typography>

@@ -39,7 +39,7 @@ const SeasonDisplay = ({name,overview,poster_path,air_date,season_number}: Seaso
             }} variant="caption" fontSize={16}>
                 {overview}
         </Typography>
-        <NavLink to={`seasons/${season_number}`}>
+        <NavLink to={`season/${season_number}`}>
             <Typography color={"primary"} variant="caption" fontSize={16}>Read more</Typography>
         </NavLink>
 

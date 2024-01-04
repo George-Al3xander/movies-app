@@ -32,7 +32,7 @@ const useFetchGenre = () => {
         }            
     }
 
-    const {data, isLoading, isError} = useQuery({queryKey: ["genres-initial-fetch"], queryFn: getGenres})
+    const {data, isLoading, isError} = useQuery({queryKey: ["genres-initial-fetch"], queryFn: getGenres, refetchOnWindowFocus: false})
 
     return {isLoading}
 }

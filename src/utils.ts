@@ -40,3 +40,8 @@ export const displayTime = (time: number) => {
   return `${minutes}m`  
 
 }
+
+
+export const tmdbImage = (path: string,  width?: number) => {
+  return `http://image.tmdb.org/t/p/${width ? ("w"+width) : "original"}${path}`
+}

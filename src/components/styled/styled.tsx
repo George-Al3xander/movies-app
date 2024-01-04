@@ -1,14 +1,15 @@
-import { Box, Container, Skeleton, Stack, Tab, Typography, styled } from "@mui/material";
+import { Box, Container,  Skeleton, Stack, Tab, Typography, styled } from "@mui/material";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa";
 import { CustomSwiperBtnProps, GenresProps, HeaderContainerProps, RatingProps, StyledGridSliderProps } from "../../types/type";
 import { useRecoilValue } from "recoil";
 import { genreNamesMovies$, genreNamesTv$ } from "../../state/selectors/selectors";
 import { Swiper, SwiperProps } from "swiper/react";
-import { Navigation, Grid, Thumbs } from "swiper/modules";
+import { Navigation, Grid, Thumbs} from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/navigation';
+
 
 
 
@@ -82,7 +83,7 @@ export const CustomContainer = styled(Box)((props) => ({
     paddingInline:  "1rem",
 }))
 
-export const HContainer = styled(Container)((props) => ({   
+export const HContainer = styled(Container)(() => ({   
     // [props.theme.breakpoints.up("sm")]: {
     //     maxWidth: "60%",
     //     paddingInline:  "10%",
@@ -91,7 +92,8 @@ export const HContainer = styled(Container)((props) => ({
     // paddingInline:  "1rem",
     minHeight: "70vh",  
     position: "relative",
-    display: "flex", 
+    display: "flex",
+    flexDirection: "column",
     '&::before': {
         content: '""',        
         position: "absolute",

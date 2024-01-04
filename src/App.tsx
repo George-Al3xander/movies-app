@@ -44,7 +44,7 @@ function App() {
               <Route element={<SingleProductDisplay />}  path="/tv/:id" />
               <Route element={<SingleProductDisplay />} path="/movie/:id/reviews"/>
               <Route element={<SingleProductDisplay />}  path="/tv/:id/reviews" />
-              <Route element={<SeasonPage />} path="/tv/:id/seasons/:seasonNumber" />
+              <Route element={<SeasonPage />} path="/tv/:id/season/:seasonNumber" />
               <Route element={<Err404 />} path="*"/>
           </Routes>   
       <Footer />   

@@ -1,5 +1,5 @@
 import { Box, Stack, Tab, Tabs, Typography } from "@mui/material"
-import { FC, useState } from "react"
+import { ComponentType, FC, useState } from "react"
 import { StyledSlider, StyledTab } from "../styled/styled";
 import { Credits, Movie, MovieDetails, TV, TvShowDetails } from "../../types/tmdb";
 import { SwiperSlide } from "swiper/react";
@@ -15,10 +15,25 @@ interface TabPanelProps {
     currIndex: number     
 }
 
-interface SDPTabsProps {
-    apiLink: string,
-    data?: MovieDetails &  TvShowDetails & {credits:Credits}
+interface Prop {
+    name: string,
+    value: boolean | string | number
 }
+
+export interface TabProp {
+    title: string,
+    Element: ComponentType<any>,
+    props: any
+    
+}
+
+interface SDPTabsProps {
+    apiLink?: string,
+    data?: MovieDetails &  TvShowDetails & {credits:Credits},
+    tabs: TabProp[]
+
+}
+
 
 const TabPanel : FC<TabPanelProps> = ({children,index, currIndex}) =>  {
     if(currIndex != index) return null    
@@ -26,7 +41,7 @@ const TabPanel : FC<TabPanelProps> = ({children,index, currIndex}) =>  {
 }
 
 
-const SDPTabs: FC<SDPTabsProps> = ({data,apiLink}) => {
+const SDPTabs: FC<SDPTabsProps> = ({data,apiLink, tabs}) => {
 
     const [currIndex, setCurrIndex] = useState(0);
 
@@ -36,24 +51,30 @@ const SDPTabs: FC<SDPTabsProps> = ({data,apiLink}) => {
 
     return(<Stack>
         <Tabs color="white" TabScrollButtonProps={{style: {color:'red'}}}  textColor={"primary"} value={currIndex} onChange={handleChange} aria-label="basic tabs example">
-            <StyledTab  label={
+            {/* <StyledTab  label={
             data!.name && data!.seasons!.length > 0 ?
             "Seasons"
             :            
             "if you loved the cast"
         }  />
             <StyledTab  label="crew"  />
-            <StyledTab  label="Reviews"  />
+            <StyledTab  label="Reviews"  /> */}
+            {tabs.map((tab) => {
+                return <StyledTab label={tab.title} />
+            })}
         </Tabs>        
-        <TabPanel index={0} currIndex={currIndex}>
-        {data!.name &&  data!.seasons!.length > 0 ?            
-            <SeasonsDisplay  seasons={data?.seasons!}/>
-            :                 
-            <BackdropSlider apiUrl={`https://api.themoviedb.org/3/discover/${data?.title ? "movie" : "tv"}?with_cast=${data!.credits.cast.slice(0,8).map((person) => person.id).toString().split(',').join('|')}`} />
-        }</TabPanel>
+        {/* <TabPanel index={0} currIndex={currIndex}>
+            {data!.name &&  data!.seasons!.length > 0 ?            
+                <SeasonsDisplay  seasons={data?.seasons!}/>
+                :                 
+                <BackdropSlider apiUrl={`https://api.themoviedb.org/3/discover/${data?.title ? "movie" : "tv"}?with_cast=${data!.credits.cast.slice(0,8).map((person) => person.id).toString().split(',').join('|')}`} />
+            }
+        </TabPanel>
         <TabPanel index={1} currIndex={currIndex}><PeopleDisplay  apiLink={`${apiLink}/credits`} crew/> </TabPanel>
-        <TabPanel index={2} currIndex={currIndex}><ReviewsDisplay apiLink={apiLink} /></TabPanel>
-
+        <TabPanel index={2} currIndex={currIndex}><ReviewsDisplay apiLink={apiLink} /></TabPanel> */}
+        {tabs.map((tab, index) => {
+            return <TabPanel currIndex={currIndex} index={index}><tab.Element {...tab.props}/></TabPanel>
+        })}
     </Stack>)
 }
 

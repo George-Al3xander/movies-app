@@ -33,7 +33,7 @@ const CardsBlock = ({apiUrl}:{apiUrl: string}) => {
         setCurrIndex(swiper.realIndex );
     }
 
-    const {data: movies, isLoading, isError} = useQuery({queryKey: ["cards-block", apiUrl], queryFn: getMovies})
+    const {data: movies, isLoading, isError} = useQuery({queryKey: ["cards-block", apiUrl], queryFn: getMovies,refetchOnWindowFocus: false})
 
 
     

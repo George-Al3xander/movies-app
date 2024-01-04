@@ -5,7 +5,7 @@ import { Review, Reviews } from "../../../types/tmdb"
 import { Alert, Box, Button, Container, Stack } from "@mui/material"
 import ReviewDisplay from "./ReviewDisplay"
 import { StyledSkeleton } from "../../styled/styled"
-
+import { FaPencilAlt } from "react-icons/fa";
 interface Props {
     apiLink: string,
 }
@@ -35,6 +35,8 @@ const ReviewsDisplay : FC<Props> = ({apiLink}) => {
     
     
     return(<Container>
+        <Stack py={4} alignItems={{sm:"flex-end"}}><Button variant="contained" size="large" startIcon={<FaPencilAlt />}>Write  review</Button></Stack>
+        
         <Stack spacing={4}>            
             {data!.results.slice(0,3).map((review, index) => <ReviewDisplay index={index} {...review}/>)}
         </Stack>

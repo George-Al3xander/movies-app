@@ -6,6 +6,7 @@ export interface SeasonSelection {
 }
 
 export interface SeasonDetails {
+  vote_average: any;
   air_date: string;
   episodes: Episode[];
   name: string;
