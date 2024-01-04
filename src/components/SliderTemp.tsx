@@ -30,7 +30,7 @@ const SliderTemp : FC< SliderTempProps> = ({apiUrl, title, ItemCoomp, LoadingIte
     const tempItems = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     
     const {data,isLoading,  isError} = useQuery({queryKey: ["horizontal-items", title, apiUrl], queryFn: fetch})
-
+    
     if(isError) return <Alert severity="error">Failed to fetch "{ title && title.toUpperCase()}", try reloading page!</Alert>
     
     return(<Container className='horizontal-items' maxWidth="xl">

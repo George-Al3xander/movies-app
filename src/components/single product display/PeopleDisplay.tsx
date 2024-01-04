@@ -8,6 +8,7 @@ import { Cast, Crew } from "../../types/tmdb"
 
 import { Avatar, Box, Stack, Typography } from "@mui/material"
 import SliderTemp from "../SliderTemp"
+import { StyledSkeleton } from "../styled/styled"
 
 interface Props {
     apiLink: string,
@@ -32,7 +33,13 @@ const Person = ({name,profile_path, character,known_for_department,gender,id}: C
     </Stack>
 </Stack>)
 
-const SkeletonItem = () => (<Box>Loading...</Box>)
+const SkeletonItem = () => (<Stack alignItems={"center"} spacing={2} direction={"row"}>
+    <StyledSkeleton variant="circular" width={60} height={60}/>
+    <Stack direction={"column"} >
+       <StyledSkeleton variant="text" width={"6rem"}/>
+       <StyledSkeleton variant="text" width={"5rem"}/>
+    </Stack>
+</Stack>)
 
 
 const PeopleDisplay : FC<Props> = ({apiLink, title, crew}) => (<span className="person-display"><SliderTemp customKey={crew ? "crew" : undefined} spaceBetween={30} apiUrl={apiLink} title={title} LoadingItemCoomp={SkeletonItem} ItemCoomp={Person} /></span>)
