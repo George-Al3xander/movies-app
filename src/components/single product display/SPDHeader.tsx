@@ -36,7 +36,7 @@ const SDPHeader: FC<Props> = ({product}) => (
             </Typography>        
         </Stack>   
         <ButtonGroup sx={{display: "flex", justifyContent:{xs: "center", sm: "flex-start"}}}>
-            <WatchTrailerBtn id={product.id}/>
+            <WatchTrailerBtn product={{...product, genre_ids: []}}/>
             <Button color="info" startIcon={<CiBookmark />} size="small" variant="outlined">Add Watchlist</Button>
         </ButtonGroup>               
     </Stack>

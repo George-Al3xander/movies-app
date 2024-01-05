@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { Genre } from "../../types/tmdb";
+import { Genre, Movie, TV } from "../../types/tmdb";
 
 
 export const sliderIndex = atom({
@@ -22,7 +22,7 @@ export const modal$ = atom({
     default: false
 })
 
-export const trailerMovieId$ = atom({
+export const trailerProduct$ = atom({
     key: "TrailerUrl",
-    default: null as null | number
+    default: null as null | (Movie & TV)
 })

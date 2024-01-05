@@ -11,10 +11,11 @@ interface HeaderMovieInfoProps extends Movie, TV {
 }
 
 
-const HeaderMovieInfo = ({title, name ,release_date, genre_ids, id, overview, vote_average, rating, noDesc}:HeaderMovieInfoProps) => {
+const HeaderMovieInfo = (props:HeaderMovieInfoProps) => {
     
+    const {title, name ,release_date, genre_ids, id, overview, vote_average, rating, noDesc} = props
 
-    return(<Stack className="header-movie-info" sx={{zIndex: 4, mt: "auto"}} spacing={2} direction="column" >
+    return(<Stack key={"header-"+id} className="header-movie-info" sx={{zIndex: 4, mt: "auto"}} spacing={2} direction="column" >
     <Typography variant="h4">{title ? title : name}</Typography>             
     <Stack alignItems={"start"} direction={"row"} spacing={.5}>
     {rating && <MovieRating fontSize={16}>{vote_average}</MovieRating>}
@@ -31,7 +32,7 @@ const HeaderMovieInfo = ({title, name ,release_date, genre_ids, id, overview, vo
             {overview}
     </Typography>}
     <ButtonGroup sx={{display: "flex", justifyContent:{xs: "center", sm: "flex-start"}}}>
-        <WatchTrailerBtn id={id}/>
+        <WatchTrailerBtn product={props}/>
         <Button color="info" startIcon={<CiBookmark />} size="small" variant="outlined">Add Watchlist</Button>
     </ButtonGroup>
 </Stack>)

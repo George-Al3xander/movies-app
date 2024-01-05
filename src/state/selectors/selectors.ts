@@ -1,5 +1,5 @@
 import { selector, selectorFamily } from "recoil";
-import { genresTv$,genresMovie$, modal$, sliderIndex, trailerMovieId$ } from "../atoms/data";
+import { genresTv$,genresMovie$, modal$, sliderIndex, trailerProduct$ } from "../atoms/data";
 import { Genre } from "../../types/tmdb";
 
 
@@ -43,7 +43,7 @@ export const modalStatus$ = selector({
     key: "ModalStatusSelektor",
     get: ({get}) => {
         const status = get(modal$);
-        const trailerId = get(trailerMovieId$)
+        const trailerId = get(trailerProduct$)
 
         return [status, trailerId != null].every(el => el == true)
     }
