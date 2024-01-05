@@ -6,18 +6,17 @@ import { BelongsToCollection, Credits, MovieDetails,  TvShowDetails } from "../.
 import SDPHeader from "./SPDHeader"
 import PeopleDisplay from "./PeopleDisplay"
 import BackdropSlider from "../horizontal/backdrop/BackdropSlider"
-import SDPTabs, { TabProp } from "./SDPTabs"
+
 import { PropagateLoader} from "react-spinners"
 import Err404 from "../Err404"
-import SeasonsDisplay from "./SeasonsDisplay"
-import ReviewDisplay from "./review/ReviewDisplay"
-import ReviewsDisplay from "./review/ReviewsDisplay"
+import Tabs from "./Tabs"
+
 
 
 
 const Collection = (props:BelongsToCollection | undefined) => {
     if(props == undefined || Object.keys(props).length == 0) return null
-    const {name,id} = props
+    const {name,id} = props;
       
     return (<BackdropSlider  title={name} apiUrl={`https://api.themoviedb.org/3/collection/${id}`} />)
 }
@@ -36,31 +35,7 @@ const  SingleProductDisplay = () => {
     </Stack>
     if(isError || data == undefined) return <Err404 />
 
-    const tabs : TabProp[] = [
-        {   
-            title: "Seasons",
-            Element: SeasonsDisplay,
-            props: {
-                seasons: data.seasons
-            }
-        },
-        {   
-            title: "Crew",
-            Element: PeopleDisplay,
-            props: {
-                apiLink: `${apiLink}/credits`,
-                crew: true
-            }
-        },
-        {   
-            title: "Reviews",
-            Element: ReviewsDisplay,
-            props: {
-                apiLink: apiLink              
-            }
-        },
-        
-    ]
+    
 
     const {overview} = data
     return(<Box  key={`single-product-${id}`}>       
@@ -71,7 +46,7 @@ const  SingleProductDisplay = () => {
                 <Typography sx={{opacity: ".7"}} variant="subtitle1" fontSize={16}>{overview}</Typography>
             </Stack> 
             <PeopleDisplay title="Top Cast" apiLink={`${apiLink}/credits`}/>
-            <SDPTabs tabs={tabs} data={data} apiLink={apiLink}/>
+            <Tabs apiLink={apiLink} data={data}/>
             <Collection {...data!.belongs_to_collection!}/>
             <BackdropSlider apiUrl={`${apiLink}/recommendations`} title="Simillar Movies for you"/>
        </Container>       

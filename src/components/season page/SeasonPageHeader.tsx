@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import { HeaderContainer, MovieRating } from "../styled/styled";
 import PeopleDisplay from "../single product display/PeopleDisplay";
-import { Episode, Season, SeasonDetails } from "../../types/tmdb";
+import { Episode,  SeasonDetails } from "../../types/tmdb";
 import { tmdbImage } from "../../utils";
 
 
@@ -12,8 +12,7 @@ interface Prop extends SeasonDetails{
 }
 
 
-const handleBg = (episodes: Episode[]) => {
-    
+const handleBg = (episodes: Episode[]) => {    
     if(episodes && episodes.length > 0) {
         const withPics = episodes.filter((ep) => ep.still_path)
         if(withPics.length > 0) {

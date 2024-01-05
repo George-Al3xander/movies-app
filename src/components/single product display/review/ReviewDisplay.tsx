@@ -1,17 +1,13 @@
-import { Box, Stack, Typography } from "@mui/material"
+import { Stack, Typography } from "@mui/material"
 import { Review } from "../../../types/tmdb"
-import { FaStar } from "react-icons/fa"
 import { MovieRating } from "../../styled/styled"
 import moment from "moment"
 import ReviewParagraph from "./ReviewParagraph"
 
-interface ReviewProps extends Review {
-    index?:number
-
-}
 
 
-const ReviewDisplay = ({author_details,content,created_at,index}: ReviewProps) => {
+
+const ReviewDisplay = ({author_details,content,created_at}: Review) => {
     const {rating,username} = author_details
 
     return(<Stack sx={{backgroundColor: "black"}} p={2} borderRadius={"1rem"} border={"1px solid white"} spacing={2}>

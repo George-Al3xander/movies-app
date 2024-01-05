@@ -11,18 +11,10 @@ import Err404 from "./components/Err404";
 import useFetchGenre from "./hooks/useFetchGenres";
 import { PropagateLoader } from "react-spinners";
 import SeasonPage from "./components/season page/SeasonPage";
+import ReviewsPage from "./components/reviews page/ReviewsPage";
 
 
 
-const Test = () => {
-    const {id,seasonNumber} = useParams()    
-    //Works for the review page pagination
-    // const [searchParams, setSearchParams] = useSearchParams();
-    // console.log(searchParams.get("page"))
- return <div>
-    {seasonNumber!}
- </div>
-}
 
 
 function App() {
@@ -42,8 +34,8 @@ function App() {
               <Route element={<MovieRelease />} path="/upcoming"/>
               <Route element={<SingleProductDisplay />} path="/movie/:id"/>
               <Route element={<SingleProductDisplay />}  path="/tv/:id" />
-              <Route element={<SingleProductDisplay />} path="/movie/:id/reviews"/>
-              <Route element={<SingleProductDisplay />}  path="/tv/:id/reviews" />
+              <Route element={<ReviewsPage />} path="/movie/:id/reviews"/>
+              <Route element={<ReviewsPage />}  path="/tv/:id/reviews" />
               <Route element={<SeasonPage />} path="/tv/:id/season/:seasonNumber" />
               <Route element={<Err404 />} path="*"/>
           </Routes>   

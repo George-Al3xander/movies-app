@@ -28,11 +28,11 @@ const ReviewParagraph = ({content}:{content: string}) => {
         }
         
     }
-    useEffect(() => {
-        if(paraRef.current) {        
+    useEffect(() => {              
+        if(paraRef.current && paraRef.current.scrollHeight > 0) {   
             setIsOpen(paraRef.current.scrollHeight === paraRef.current.clientHeight)            
         }
-    },[])
+    },[paraRef.current && paraRef.current.scrollHeight])
 
     return(<Box>
         <Typography sx={isOpen ? {} : styles} ref={paraRef} fontSize={18} variant="subtitle1">{content}</Typography>

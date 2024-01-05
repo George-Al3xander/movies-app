@@ -89,6 +89,22 @@ body {
   // }
 }
 
+.reviews-page {
+  .MuiPagination-root {
+    button,  .MuiPaginationItem-ellipsis{
+      color: $clr-primary !important;
+    }
+    .Mui-selected {
+      color: white !important;
+      border-color: white !important;    
+   }
+   
+  }
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
 
 
 

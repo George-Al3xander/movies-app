@@ -1,7 +1,7 @@
 import { ContainerProps, StackProps, TypographyProps } from "@mui/material";
 import { ButtonHTMLAttributes, ComponentType, ReactPropTypes } from "react";
 import { SwiperProps } from "swiper/react";
-import { Movie, TV } from "./tmdb";
+import { Credits, Movie, MovieDetails, TV, TvShowDetails } from "./tmdb";
 
 export interface GenresProps extends TypographyProps {
     genre_ids:  number[],
@@ -50,3 +50,26 @@ export interface UpcomingElemnt {
     month: string,
     results: (Movie & TV)[]
 }
+
+
+
+export interface TabPanelProps {
+    children?: React.ReactNode,
+    index: number,
+    currIndex: number     
+}
+
+
+
+export interface TabProp {
+    title: string,
+    Element: ComponentType<any>,
+    props: any
+    
+}
+
+export interface SDPTabsProps {    
+    tabs: TabProp[]
+
+}
+

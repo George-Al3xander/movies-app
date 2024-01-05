@@ -1,4 +1,4 @@
-import { Avatar, Box, Container, Stack, Typography } from "@mui/material";
+import { Avatar, Box,  Stack, Typography } from "@mui/material";
 import { Episode } from "../../types/tmdb";
 import { displayTime, tmdbImage } from "../../utils";
 import { MovieRating, StyledSlider } from "../styled/styled";
@@ -6,7 +6,7 @@ import { SwiperSlide } from "swiper/react";
 
 
 
-const EpisodeDisplay = ({name, overview, still_path,episode_number,vote_average, runtime,show_id}:Episode) => (<Stack className="episode" direction={{sm:"row"}} spacing={{xs: 3,sm:2}}>
+const EpisodeDisplay = ({name, overview, still_path,episode_number,vote_average, runtime}:Episode) => (<Stack className="episode" direction={{sm:"row"}} spacing={{xs: 3,sm:2}}>
     <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
         <Typography display={{sm: "none"}}  variant="h5">{name}</Typography>   
         <Avatar  sx={{ width: 50, height: 50 ,fontWeight: 600,fontSize: 26 ,bgcolor: "white", color: "black", alignSelf: {sm:"center"}}}>{episode_number}</Avatar>
@@ -22,9 +22,9 @@ const EpisodeDisplay = ({name, overview, still_path,episode_number,vote_average,
    <Stack spacing={2}>
         <Box>
             <Typography display={{xs: "none", sm: "initial"}} fontSize={20} variant="h6">{name}</Typography>    
-            <Stack direction={"row"} spacing={2} alignItems={"center"}>
+            <Stack direction={"row"} spacing={2}  alignItems={"center"}>
                     <MovieRating fontSize={16}>{vote_average}</MovieRating>
-                    <Typography sx={{opacity: ".7"}}>{displayTime(runtime)}</Typography>
+                    <Typography variant="caption"  fontSize={16} sx={{opacity: ".7"}}>{displayTime(runtime)}</Typography>
             </Stack> 
         </Box>
         <Typography sx={{opacity: ".7"}} variant="subtitle1" fontSize={16}>{overview}</Typography>
@@ -32,13 +32,7 @@ const EpisodeDisplay = ({name, overview, still_path,episode_number,vote_average,
 </Stack>) 
 
 
-const EpisodesDisplay = ({episodes}: {episodes: Episode[]}) => {
-    const pagination = {
-        clickable: true,
-        renderBullet: function (index: number, className: string) {
-          return '<span class="' + className + '">' + (index + 1) + '</span>';
-        },
-    };
+const EpisodesDisplay = ({episodes}: {episodes: Episode[]}) => {    
     if(episodes.length == 0) return null
 
     return(<span className="episodes-display">
