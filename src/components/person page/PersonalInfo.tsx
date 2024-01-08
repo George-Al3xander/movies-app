@@ -10,7 +10,7 @@ const PersonalInfo = (props: PersonDetails) => {
 
 
     return(<Stack spacing={2}>
-        <Typography variant="h3">Personal info</Typography>
+        <Typography variant="h4">Personal info</Typography>
         {personalInfoKeys.map((key) => {                 
             if(key == "deathday" && !props.deathday) return null
             return <Stack  display={key == "biography" ? {sm:"none"}: {}} spacing={"3px"}>

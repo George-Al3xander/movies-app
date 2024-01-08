@@ -7,7 +7,6 @@ import { PropagateLoader } from "react-spinners";
 import { useQuery } from "@tanstack/react-query";
 import Err404 from "../Err404";
 import PersonSideBlock from "./PersonSideBlock";
-import PersonHeader from "./PersonHeader";
 import PersonMainBlock from "./main block/PersonMainBlock";
 
 

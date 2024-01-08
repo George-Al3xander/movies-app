@@ -1,7 +1,7 @@
 import { ContainerProps, StackProps, TypographyProps } from "@mui/material";
 import { ButtonHTMLAttributes, ComponentType, ReactPropTypes } from "react";
 import { SwiperProps } from "swiper/react";
-import { Credits, Movie, MovieDetails, TV, TvShowDetails } from "./tmdb";
+import { Credits, Movie, MovieDetails, PersonMovieCast, PersonMovieCrew, PersonTvShowCast, PersonTvShowCrew, TV, TvShowDetails } from "./tmdb";
 
 export interface GenresProps extends TypographyProps {
     genre_ids:  number[],
@@ -70,6 +70,16 @@ export interface TabProp {
 
 export interface SDPTabsProps {    
     tabs: TabProp[]
+}
 
+
+export interface DepartmentYearResult {
+    year: number,
+    results: (PersonMovieCast & PersonTvShowCast & PersonMovieCrew & PersonTvShowCrew)[]
+} 
+
+export interface DepartmentResult {
+    department: string,
+    results: DepartmentYearResult[]
 }
 
