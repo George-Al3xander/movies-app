@@ -31,7 +31,7 @@ const OrderedItem = ({title,name, poster_path,genre_ids, vote_average, release_d
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     display: '-webkit-box',
-                    WebkitLineClamp: '2',
+                    WebkitLineClamp: '1',
                     WebkitBoxOrient: 'vertical',
                     maxWidth: "100%",
                     overflowWrap: "break-word" 

@@ -6,9 +6,10 @@ import { FC } from "react"
 
 import { Cast, Crew } from "../../types/tmdb"
 
-import { Avatar, Box, Stack, Typography } from "@mui/material"
+import { Avatar,  Stack, Typography } from "@mui/material"
 import SliderTemp from "../SliderTemp"
 import { StyledSkeleton } from "../styled/styled"
+import { tmdbImage } from "../../utils"
 
 interface Props {
     apiLink: string,
@@ -19,7 +20,7 @@ interface Props {
 
 const Person = ({name,profile_path, character,known_for_department,gender,id}: Cast & Crew) => (<Stack key={`person-display-${id}-${name}`}  alignItems={"center"} spacing={2} direction={"row"}>
     {profile_path ?
-    <Avatar sx={{ width: 60, height: 60}} alt={name + "'s profile picture"} src={`http://image.tmdb.org/t/p/original${profile_path}`} />
+    <Avatar sx={{ width: 60, height: 60}} alt={name + "'s profile picture"} src={tmdbImage(profile_path,500)} />
     :
     gender == 2 ?
     <Avatar sx={{ width: 60, height: 60}} alt={name + "'s profile picture"} src={placeholderMale} />

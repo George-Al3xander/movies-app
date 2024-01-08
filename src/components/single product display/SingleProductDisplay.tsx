@@ -10,6 +10,7 @@ import BackdropSlider from "../horizontal/backdrop/BackdropSlider"
 import { PropagateLoader} from "react-spinners"
 import Err404 from "../Err404"
 import Tabs from "./Tabs"
+import useApiLink from "../../hooks/useApiLink"
 
 
 
@@ -23,13 +24,11 @@ const Collection = (props:BelongsToCollection | undefined) => {
 
 
 const  SingleProductDisplay = () => {
-    const path = window.location.hash.replace("#", "")
-    const {id} = useParams();
-    const apiLink = `https://api.themoviedb.org/3${path}`
+    const {id,apiLink} = useApiLink()
 
     
     const fetch = async () => await fetchFromTmdb(apiLink+"?append_to_response=credits")  as MovieDetails & TvShowDetails & {credits:Credits}
-    const {data,isLoading,isError} = useQuery({queryKey: ["single-product-display", path, apiLink], queryFn: fetch})
+    const {data,isLoading,isError} = useQuery({queryKey: ["single-product-display",  apiLink], queryFn: fetch})
     if(isLoading) return <Stack justifyContent={"center"} alignItems={"center"} width={"100vw"} height={"80vh"}>
         <PropagateLoader color="var(--clr-primary)"/>
     </Stack>

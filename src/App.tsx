@@ -12,6 +12,7 @@ import useFetchGenre from "./hooks/useFetchGenres";
 import { PropagateLoader } from "react-spinners";
 import SeasonPage from "./components/season page/SeasonPage";
 import ReviewsPage from "./components/reviews page/ReviewsPage";
+import PersonPage from "./components/person page/PersonPage";
 
 
 
@@ -37,6 +38,7 @@ function App() {
               <Route element={<ReviewsPage />} path="/movie/:id/reviews"/>
               <Route element={<ReviewsPage />}  path="/tv/:id/reviews" />
               <Route element={<SeasonPage />} path="/tv/:id/season/:seasonNumber" />
+              <Route element={<PersonPage />} path="/person/:id"/>
               <Route element={<Err404 />} path="*"/>
           </Routes>   
       <Footer />   
