@@ -13,10 +13,10 @@ maxWidth={{xs: "300px", sm: "400px"
  src={profile_path ?
     tmdbImage(profile_path)
     :
-    gender == 2 ?
-        placeholderMale
-        :
-        placeholderFemale
+    gender == 1 ?
+    placeholderFemale
+    :
+    placeholderMale
 } alt={name + "'s picture"} />
 </Box>)
 

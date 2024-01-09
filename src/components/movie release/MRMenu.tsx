@@ -3,7 +3,7 @@ import iso from "iso-3166-1"
 import SelectElement from "./SelectElement"
 import { FC } from "react"
 
-interface SelectProps {
+export interface SelectProps {
     onChange: Function
 }
 
