@@ -1,4 +1,4 @@
-import { Box, Button, MenuItem } from "@mui/material"
+import { Box, Button, MenuItem, SelectChangeEvent } from "@mui/material"
 import usePersonCareer from "../../../hooks/usePersonCareer"
 import YearItem from "./YearItem"
 import DepartmentBlock from "./DepartmentBlock"
@@ -11,27 +11,36 @@ interface PlatformProps extends SelectProps {
     isMovie: boolean,
 }
 
-
-const PlatformsSelect = ({onChange,isTv, isMovie}:PlatformProps) => {
-    return(<SelectElement onChangeFunc={onChange} name="platform">
-          <MenuItem value="">
-            <em>All</em>
-        </MenuItem>
-        <MenuItem disabled={!isMovie}  value={"movie"}>Movie</MenuItem>
-        <MenuItem disabled={!isTv} value={"tv"}>Tv shows</MenuItem>
-      </SelectElement>)
+interface DepartmentsProps extends SelectProps {
+    departments: string[]
 }
 
 
+const PlatformsSelect = ({onChange,isTv, isMovie}:PlatformProps) => (<SelectElement onChangeFunc={onChange} name="platform">
+          <MenuItem value="">All</MenuItem>
+        <MenuItem disabled={!isMovie}  value={"movie"}>Movie</MenuItem>
+        <MenuItem disabled={!isTv} value={"tv"}>Tv shows</MenuItem>
+      </SelectElement>)
+
+
+const DepartmentSelect = ({onChange,  departments}: DepartmentsProps) => (<SelectElement onChangeFunc={onChange} name="department">
+        <MenuItem value="">All</MenuItem>
+        {departments.map((dep) => {
+            return <MenuItem value={dep}>{dep}</MenuItem>
+        })}
+</SelectElement>)
+
+
 const CareerBlock = () => {
-    const {displayed ,setCurrentPlatform, isLoading,isTv,isMovie,setCurrentDepartment, allDepartments} = usePersonCareer()
+    const {displayed ,handlePlatformChange, isLoading,isTv,isMovie,handleDepartmentChange, allDepartments} = usePersonCareer()
 
     return(<Box>
         {isLoading ? "Loading" 
         : 
         <Box>
-            <PlatformsSelect isTv={isTv} isMovie={isMovie} onChange={setCurrentPlatform} />
-            {/* <Button onClick={() => setCurrentDepartment(allDepartments[2])}>CLick</Button> */}
+            <PlatformsSelect isTv={isTv} isMovie={isMovie} onChange={handlePlatformChange} />
+            <DepartmentSelect departments={allDepartments} onChange={handleDepartmentChange}/>
+           
             {displayed.map((res) => <DepartmentBlock {...res}/>)}
         </Box>}
     </Box>)

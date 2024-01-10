@@ -5,11 +5,9 @@ import { PersonCombinedCredits, PersonMovieCast, PersonMovieCredit, PersonMovieC
 import { useEffect, useState } from "react";
 import { DepartmentResult } from "../types/type";
 import { RVTool } from "regex-validation-tool";
+import { SelectChangeEvent } from "@mui/material";
 
 //81532 - no tv show person
-
-
-
 
 
 const usePersonCareer = () => {
@@ -32,12 +30,32 @@ const usePersonCareer = () => {
         return {tv: tvCredits, movie:movieCredits}
     }
     const {data,isLoading,isError} = useQuery({queryKey: ["person-career",  apiLink,id], queryFn: fetch})
-    const sortByDepartment = () => {
+
+
+    const sortByDepartment = () => {       
         if(notBlank(currentDepartment) && result.length > 0) {
-            setDisplayed(result.filter(({department}) => department ? department.toLowerCase() == currentDepartment.toLowerCase() : false))
+            const filtered = sortByCurrentDepartment(result)
+           setDisplayed(filtered)
         } else {
             setDisplayed(result)
         }
+    }
+
+    const sortByCurrentDepartment = (arr: DepartmentResult[]) => {
+        return arr.filter(({department}) => department ? department.toLowerCase() == currentDepartment.toLowerCase() : false)
+    }
+
+    const handleDepartmentChange = (e: SelectChangeEvent<string>) => setCurrentDepartment(e.target.value)
+    const handlePlatformChange = (e: SelectChangeEvent<string>) => setCurrentPlatform(e.target.value)
+
+    const sortByCurrentPlatform = (arr: DepartmentResult[]) => {
+        return arr.map(({department,results}) => {
+            const filtered = results.map((res) => {
+                const resFiltered = res.results.filter((job) => currentPlatform == "tv" ? job.episode_count : job.release_date)
+                return {...res, results: resFiltered}
+            }).filter((res) => res.results.length > 0)
+            return {department,results: filtered}
+        }).filter((res) => res.results.length > 0);
     }
 
     
@@ -78,7 +96,9 @@ const usePersonCareer = () => {
             const yearsMovie = [... new Set(resultMovie.cast.map(({release_date}) => new Date(release_date).getFullYear()))];
             const allYears = [...new Set(yearsMovie.concat(yearsTv))].sort((a,b) => a-b)
             const actingResults = allYears.map((year) =>({year, results: [...resultMovie.cast.filter((mov) => new Date(mov.release_date).getFullYear() == year), ...resultTv.cast.filter((mov) => new Date(mov.first_air_date).getFullYear() == year)]})) as any
-            tempResult = [{department: "Acting", results: actingResults},...tempResult]            
+            allDepartmentsTemp = ["Acting",...allDepartmentsTemp]
+            tempResult = [{department: "Acting", results: actingResults},...tempResult]    
+
         } 
         setResult(tempResult);
         setAllDepartments(allDepartmentsTemp)
@@ -86,28 +106,38 @@ const usePersonCareer = () => {
 
 
 
-
     useEffect(() => {
         if(notBlank(currentPlatform)) {
-            setDisplayed(result.map(({department,results}) => {
-                const filtered = results.map((res) => {
-                    const resFiltered = res.results.filter((job) => currentPlatform == "tv" ? job.episode_count : job.release_date)
-                    
-                    return {...res, results: resFiltered}
-                }).filter((res) => res.results.length > 0)
-                return {department,results: filtered}
-            }).filter((res) => res.results.length > 0)) 
+            const newPlatform = sortByCurrentPlatform(result)
+            if(notBlank(currentDepartment)) {
+                setDisplayed(sortByCurrentDepartment(newPlatform)) 
+            } else {
+                setDisplayed(newPlatform) 
+            }
         } else {
             sortByDepartment()
-        }
+        }        
     }, [currentPlatform])
 
 
     useEffect(() => {
-        sortByDepartment()
+        if(notBlank(currentDepartment) && result.length > 0) {
+            const filtered = sortByCurrentDepartment(result)
+            if(notBlank(currentPlatform)) {
+                setDisplayed(sortByCurrentPlatform(filtered))
+            } else {
+                setDisplayed(filtered)
+            }
+        } else {
+            if(notBlank(currentPlatform)) {
+                setDisplayed(sortByCurrentPlatform(result))
+            } else {
+                setDisplayed(result)
+            }           
+        }
     }, [currentDepartment,result])
 
-    return {isLoading, displayed, allDepartments, setCurrentDepartment, setCurrentPlatform,isTv,isMovie}
+    return {isLoading, displayed, allDepartments, handleDepartmentChange, handlePlatformChange,isTv,isMovie}
 
 }
 
