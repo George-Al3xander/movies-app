@@ -43,7 +43,7 @@ const CountriesSelect = ({onChange}:SelectProps) => {
 const YearSelect = ({onChange}:SelectProps) => {
     const dates = [0,1,2].map((num) => new Date().getFullYear() + num)
 
-    return(<SelectElement defaultValue={new Date().getFullYear()} onChangeFunc={onChange} name="countries">
+    return(<SelectElement defaultValue={new Date().getFullYear()} onChangeFunc={onChange} name="year">
         {dates.map((date) => {
             return <MenuItem value={date}>{date}</MenuItem>
         })}

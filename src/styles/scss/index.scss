@@ -40,9 +40,12 @@ body {
         width: 60%;
 
       }
-      } 
       .header-movie-info {
         margin: auto auto 5% 1rem;
+      }
+    } 
+      .header-movie-info {
+        margin: auto auto 10% 1rem;
       }       
     
 }
@@ -102,6 +105,18 @@ body {
   }
   a:hover {
     text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+
+
+.career-block, .people-display {
+  a,a:hover {
+    transition: all .3s ease;    
+  }
+  a:hover {
+    color: $clr-primary;
     cursor: pointer;
   }
 }

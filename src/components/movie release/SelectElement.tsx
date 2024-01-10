@@ -21,7 +21,6 @@ const SelectElement : FC<Props> = ({onChangeFunc,name,defaultValue,children,labe
       onChangeFunc(e)  
     }
 
-    
 
     return(<FormControl size="small" sx={{minWidth: "20ch", input: {
         color: "white"

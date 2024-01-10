@@ -10,6 +10,9 @@ import { SelectChangeEvent } from "@mui/material";
 //81532 - no tv show person
 
 
+export type usePersonCareerResult = ReturnType<typeof usePersonCareer>
+
+
 const usePersonCareer = () => {
     const {id,apiLink} = useApiLink();
     const [currentPlatform, setCurrentPlatform] = useState("")
@@ -82,7 +85,7 @@ const usePersonCareer = () => {
     
                 const yearsTv = [... new Set(fromTv.map(({first_air_date}) => new Date(first_air_date).getFullYear()))];
                 const yearsMovie = [... new Set(fromMovie.map(({release_date}) => new Date(release_date).getFullYear()))];
-                const allYears = [...new Set(yearsMovie.concat(yearsTv))]
+                const allYears = [...new Set(yearsMovie.concat(yearsTv))].sort((a,b) => b-a)
     
     
                 const results = allYears.map((year) =>({year, results: [...resultMovie.crew.filter((mov) => new Date(mov.release_date).getFullYear() == year), ...resultTv.crew.filter((mov) => new Date(mov.first_air_date).getFullYear() == year)]})) 
@@ -94,7 +97,7 @@ const usePersonCareer = () => {
         if(resultMovie.cast.length > 0 || resultTv.cast.length > 0 ) {
             const yearsTv = [... new Set(resultTv.cast.map(({first_air_date}) => new Date(first_air_date).getFullYear()))];
             const yearsMovie = [... new Set(resultMovie.cast.map(({release_date}) => new Date(release_date).getFullYear()))];
-            const allYears = [...new Set(yearsMovie.concat(yearsTv))].sort((a,b) => a-b)
+            const allYears = [...new Set(yearsMovie.concat(yearsTv))].sort((a,b) => b-a)
             const actingResults = allYears.map((year) =>({year, results: [...resultMovie.cast.filter((mov) => new Date(mov.release_date).getFullYear() == year), ...resultTv.cast.filter((mov) => new Date(mov.first_air_date).getFullYear() == year)]})) as any
             allDepartmentsTemp = ["Acting",...allDepartmentsTemp]
             tempResult = [{department: "Acting", results: actingResults},...tempResult]    

@@ -25,7 +25,7 @@ const SeasonDisplay = ({name,overview,poster_path,air_date,season_number}: Seaso
     <Stack direction={"column"} spacing={2}>
        <Stack>
             <Typography variant="h6">{name}</Typography>   
-            <Typography variant="subtitle2" fontStyle={"italic"}  textTransform={"uppercase"} sx={{opacity: ".7"}}>{air_date.split("-")[0]}</Typography>
+            {air_date && <Typography variant="subtitle2" fontStyle={"italic"}  textTransform={"uppercase"} sx={{opacity: ".7"}}>{air_date.split("-")[0]}</Typography>}
        </Stack>
        <Stack>
         <Typography sx={{

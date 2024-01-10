@@ -1,48 +1,23 @@
-import { Box, Button, MenuItem, SelectChangeEvent, Stack } from "@mui/material"
+import { Box, Typography} from "@mui/material"
 import usePersonCareer from "../../../hooks/usePersonCareer"
-import YearItem from "./YearItem"
 import DepartmentBlock from "./DepartmentBlock"
-import { SelectProps } from "../../movie release/MRMenu"
-import SelectElement from "../../movie release/SelectElement"
+
+import CareerSelectMenu from "./CareerSelectMenu"
 
 
-interface PlatformProps extends SelectProps {
-    isTv: boolean,
-    isMovie: boolean,
-}
-
-interface DepartmentsProps extends SelectProps {
-    departments: string[]
-}
-
-
-const PlatformsSelect = ({onChange,isTv, isMovie}:PlatformProps) => (<SelectElement label onChangeFunc={onChange} name="platform">
-        <MenuItem selected value="">All</MenuItem>
-        <MenuItem disabled={!isMovie}  value={"movie"}>Movie</MenuItem>
-        <MenuItem disabled={!isTv} value={"tv"}>Tv shows</MenuItem>
-      </SelectElement>)
-
-
-const DepartmentSelect = ({onChange,  departments}: DepartmentsProps) => (<SelectElement label onChangeFunc={onChange} name="department">
-        <MenuItem value="">All</MenuItem>
-        {departments.map((dep) => {
-            return <MenuItem value={dep}>{dep}</MenuItem>
-        })}
-</SelectElement>)
 
 
 const CareerBlock = () => {
-    const {displayed ,handlePlatformChange, isLoading,isTv,isMovie,handleDepartmentChange, allDepartments} = usePersonCareer()
-
-    return(<Box>
+    const career = usePersonCareer()
+    const {displayed, isLoading} = career
+    return(<Box className="career-block">
         {isLoading ? "Loading" 
         : 
         <Box>
-            <Stack direction={"row"} spacing={2}>
-                <PlatformsSelect isTv={isTv} isMovie={isMovie} onChange={handlePlatformChange} />
-                <DepartmentSelect departments={allDepartments} onChange={handleDepartmentChange}/>
-            </Stack>
-           
+            <Box sx={{flexDirection:{xs:"column", sm:"row"},display: "flex", alignContent: {sm:"center"}, justifyContent: "space-between", flexWrap: "wrap", gap: "1rem"}}>
+                <Typography  variant="h4">Career</Typography>
+                <CareerSelectMenu {...career}/>  
+            </Box>
             {displayed.map((res) => <DepartmentBlock {...res}/>)}
         </Box>}
     </Box>)

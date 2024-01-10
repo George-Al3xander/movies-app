@@ -10,6 +10,7 @@ import { Avatar,  Stack, Typography } from "@mui/material"
 import SliderTemp from "../SliderTemp"
 import { StyledSkeleton } from "../styled/styled"
 import { tmdbImage } from "../../utils"
+import { NavLink } from "react-router-dom"
 
 interface Props {
     apiLink: string,
@@ -18,7 +19,7 @@ interface Props {
 }
 
 
-const Person = ({name,profile_path, character,known_for_department,gender,id}: Cast & Crew) => (<Stack key={`person-display-${id}-${name}`}  alignItems={"center"} spacing={2} direction={"row"}>
+const Person = ({name,profile_path, character,known_for_department,gender,id}: Cast & Crew) => (<Stack className={"people-display"} key={`person-display-${id}-${name}`}  alignItems={"center"} spacing={2} direction={"row"}>
     {profile_path ?
     <Avatar sx={{ width: 60, height: 60}} alt={name + "'s profile picture"} src={tmdbImage(profile_path,500)} />
     :
@@ -29,7 +30,7 @@ const Person = ({name,profile_path, character,known_for_department,gender,id}: C
 
     }
     <Stack direction={"column"} >
-       <Typography>{name}</Typography>            
+       <NavLink to={`/person/${id}`}><Typography>{name}</Typography></NavLink>            
        <Typography sx={{opacity: ".7"}} variant="caption">{character ? character : known_for_department}</Typography> 
     </Stack>
 </Stack>)

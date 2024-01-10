@@ -11,12 +11,12 @@ import CareerBlock from "../career/CareerBlock"
 const PersonMainBlock = ({name,biography, known_for_department,id}: PersonDetails) => {
     
     return(<Stack sx={{flex: {sm:"90%"},background: "black", p:2, borderRadius: "1rem"}} spacing={5}>
-        {/* <Typography display={{xs: "none", sm: "initial"}}  variant="h3">{name}</Typography>
+        <Typography display={{xs: "none", sm: "initial"}}  variant="h3">{name}</Typography>
         <Stack display={{xs: "none", sm: "initial"}} spacing={"1rem"}>
-            <Typography variant="h5">Biography</Typography>
+            <Typography variant="h6">Biography</Typography>
             <ReviewParagraph content={biography}/>
         </Stack>
-        <PosterSlider apiUrl={`https://api.themoviedb.org/3/discover/movie?with_${known_for_department.toLowerCase() == "acting" ? "cast": "crew"}=${id}`} title="Known For"/> */}
+        <PosterSlider apiUrl={`https://api.themoviedb.org/3/discover/movie?with_${known_for_department.toLowerCase() == "acting" ? "cast": "crew"}=${id}&sort_by=vote_average.desc`} title="Known For"/>
         <CareerBlock />
     </Stack>)
 }

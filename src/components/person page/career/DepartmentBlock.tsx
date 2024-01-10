@@ -7,9 +7,9 @@ import YearItem from "./YearItem"
 
 const DepartmentBlock = ({department, results}: DepartmentResult) => {
 
-    return(<Stack>
-        <Typography  borderBottom={"1px solid white"} variant="subtitle1">{department}</Typography>
-        <Stack>{results.map((res) => <YearItem {...res}/>)}</Stack>
+    return(<Stack my="1rem">
+        <Typography my="1rem" variant="h5">{department}</Typography>
+        <Stack borderRadius={".5rem"} overflow={"hidden"} border={"1px solid gray"} >{results.map((res) => <YearItem {...res}/>)}</Stack>
     </Stack>)
 }
 
