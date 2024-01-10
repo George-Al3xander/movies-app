@@ -1,4 +1,4 @@
-import { Box, Button, MenuItem, SelectChangeEvent } from "@mui/material"
+import { Box, Button, MenuItem, SelectChangeEvent, Stack } from "@mui/material"
 import usePersonCareer from "../../../hooks/usePersonCareer"
 import YearItem from "./YearItem"
 import DepartmentBlock from "./DepartmentBlock"
@@ -16,14 +16,14 @@ interface DepartmentsProps extends SelectProps {
 }
 
 
-const PlatformsSelect = ({onChange,isTv, isMovie}:PlatformProps) => (<SelectElement onChangeFunc={onChange} name="platform">
-          <MenuItem value="">All</MenuItem>
+const PlatformsSelect = ({onChange,isTv, isMovie}:PlatformProps) => (<SelectElement label onChangeFunc={onChange} name="platform">
+        <MenuItem selected value="">All</MenuItem>
         <MenuItem disabled={!isMovie}  value={"movie"}>Movie</MenuItem>
         <MenuItem disabled={!isTv} value={"tv"}>Tv shows</MenuItem>
       </SelectElement>)
 
 
-const DepartmentSelect = ({onChange,  departments}: DepartmentsProps) => (<SelectElement onChangeFunc={onChange} name="department">
+const DepartmentSelect = ({onChange,  departments}: DepartmentsProps) => (<SelectElement label onChangeFunc={onChange} name="department">
         <MenuItem value="">All</MenuItem>
         {departments.map((dep) => {
             return <MenuItem value={dep}>{dep}</MenuItem>
@@ -38,8 +38,10 @@ const CareerBlock = () => {
         {isLoading ? "Loading" 
         : 
         <Box>
-            <PlatformsSelect isTv={isTv} isMovie={isMovie} onChange={handlePlatformChange} />
-            <DepartmentSelect departments={allDepartments} onChange={handleDepartmentChange}/>
+            <Stack direction={"row"} spacing={2}>
+                <PlatformsSelect isTv={isTv} isMovie={isMovie} onChange={handlePlatformChange} />
+                <DepartmentSelect departments={allDepartments} onChange={handleDepartmentChange}/>
+            </Stack>
            
             {displayed.map((res) => <DepartmentBlock {...res}/>)}
         </Box>}
