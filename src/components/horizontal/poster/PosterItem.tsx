@@ -2,7 +2,6 @@ import { Box, Stack, Typography } from "@mui/material"
 import { Movie, TV } from "../../../types/tmdb"
 import { Genres, MovieRating, VerticalItemInfo } from "../../styled/styled";
 import { MdOpenInNew } from "react-icons/md";
-import { GrContactInfo } from "react-icons/gr";
 import { NavLink } from "react-router-dom";
 
 const PosterItem = ({poster_path, vote_average, genre_ids,title, name,id}: Movie & TV) => {

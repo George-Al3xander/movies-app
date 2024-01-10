@@ -26,3 +26,14 @@ export const trailerProduct$ = atom({
     key: "TrailerUrl",
     default: null as null | (Movie & TV)
 })
+
+
+export const loginModal$ = atom({
+    key: "LoginModalStatus",
+    default: false
+})
+
+export const registerModal$ = atom({
+    key: "RegisterModalStatus",
+    default: false
+})
