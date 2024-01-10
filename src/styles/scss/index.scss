@@ -111,15 +111,27 @@ body {
 
 
 
-.career-block, .people-display {
-  a,a:hover {
+.link-primary {  
+    align-self: flex-start;
+    transition: all .3s ease;    
+  &:hover {
     transition: all .3s ease;    
   }
-  a:hover {
+  &:hover {
     color: $clr-primary;
     cursor: pointer;
   }
 }
+
+.read-more-link {
+  color: $clr-primary;
+  width: min-content;
+  white-space: nowrap;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+} 
 
 
 

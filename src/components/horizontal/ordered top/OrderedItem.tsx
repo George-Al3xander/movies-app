@@ -1,15 +1,16 @@
 import { Box,  Stack, Typography } from "@mui/material"
 import { Movie, TV } from "../../../types/tmdb"
 import { Genres, MovieRating } from "../../styled/styled"
+import { NavLink } from "react-router-dom"
 
 interface OrderedItemProps extends  Movie, TV {
     index?: number
 }
 
-const OrderedItem = ({title,name, poster_path,genre_ids, vote_average, release_date, media_type,index}: OrderedItemProps) => {
+const OrderedItem = ({title,name, poster_path,genre_ids, vote_average, id,release_date, media_type,index}: OrderedItemProps) => {
    
 
-    return(<Box className="ordered-item">
+    return(<Box key={`ordered-item-${id}`} className="ordered-item">
         {index != undefined && <Typography fontWeight={700} sx={{alignSelf: "center"}} variant="h1">{index + 1}</Typography>}
         {poster_path? 
         <img  src={`http://image.tmdb.org/t/p/w300${poster_path}`} alt={title ? title : name}/>
@@ -27,6 +28,7 @@ const OrderedItem = ({title,name, poster_path,genre_ids, vote_average, release_d
                 })}
            </Stack>
            <Box className="info" >
+           <NavLink className={"link-primary"} to={`/${title ? "movie" : "tv"}/${id}`}>
                 <Typography sx={{
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -36,6 +38,8 @@ const OrderedItem = ({title,name, poster_path,genre_ids, vote_average, release_d
                     maxWidth: "100%",
                     overflowWrap: "break-word" 
                 }} variant="h5">{title ? title : name}</Typography>
+
+           </NavLink>
                 <Genres isTv={title == undefined} fontSize={16} genre_ids={genre_ids}/>
                 {vote_average > 0 ?
                 <MovieRating fontSize={16}>{vote_average}</MovieRating>

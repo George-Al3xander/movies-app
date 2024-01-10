@@ -30,7 +30,7 @@ const Person = ({name,profile_path, character,known_for_department,gender,id}: C
 
     }
     <Stack direction={"column"} >
-       <NavLink to={`/person/${id}`}><Typography>{name}</Typography></NavLink>            
+       <NavLink className={"link-primary"} to={`/person/${id}`}><Typography>{name}</Typography></NavLink>            
        <Typography sx={{opacity: ".7"}} variant="caption">{character ? character : known_for_department}</Typography> 
     </Stack>
 </Stack>)

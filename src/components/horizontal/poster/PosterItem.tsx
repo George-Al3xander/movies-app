@@ -1,16 +1,19 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { Movie, TV } from "../../../types/tmdb"
 import { Genres, MovieRating, VerticalItemInfo } from "../../styled/styled";
+import { MdOpenInNew } from "react-icons/md";
+import { GrContactInfo } from "react-icons/gr";
+import { NavLink } from "react-router-dom";
 
-
-
-const PosterItem = ({poster_path, vote_average, genre_ids,title, name}: Movie & TV) => {
-    return(<Box className="poster-item" onClick={() => console.log(11)} sx={{
-        borderRadius: 1, 
-        overflow: "hidden", 
-        postiion: "relative",  
+const PosterItem = ({poster_path, vote_average, genre_ids,title, name,id}: Movie & TV) => {
+    return(<Box key={`poster-item-${id}`} className="poster-item"  sx={{
+            borderRadius: 1, 
+            overflow: "hidden", 
+            postiion: "relative",  
         }}>       
-       
+        <NavLink to={`/${title ? "movie" : "tv"}/${id}`}>
+            <span className="hover-layer"><MdOpenInNew size={50}/></span>
+        </NavLink>
         {poster_path ?
         <img className="horizontal-item-img" style={{position: "relative"}}  src={`http://image.tmdb.org/t/p/w500${poster_path}`} alt={title ? title : name} />
         :

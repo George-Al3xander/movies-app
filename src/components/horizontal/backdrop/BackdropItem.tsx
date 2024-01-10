@@ -17,7 +17,6 @@ const BackdropItem = ({backdrop_path, vote_average, genre_ids,title, name, id}: 
     }
 
     const {data, isLoading, isError} = useQuery({queryKey: ["horizontal-item", "backdrop",id], queryFn: getMovies})
-
    
     return(<Stack spacing={1}> 
         {isLoading ?
@@ -32,16 +31,14 @@ const BackdropItem = ({backdrop_path, vote_average, genre_ids,title, name, id}: 
             </Box>
         }       
         <Box>
-            <NavLink to={`/${title ? "movie" : "tv"}/${id}`}>
-                <Typography fontSize={20} variant="h6">{title ? title : name}</Typography>
+            <NavLink className="link-primary" to={`/${title ? "movie" : "tv"}/${id}`}>
+                <Typography className="link-primary"  fontSize={20} variant="h6">{title ? title : name}</Typography>
             </NavLink>
             <Stack alignItems={"start"} direction={"row"} spacing={.5}>
                 <MovieRating fontSize={16}>{vote_average}</MovieRating>
                 <Genres isTv={title == undefined} fontSize={16}  before={" | "} genre_ids={genre_ids}/>
             </Stack>
-        </Box>
-        
-        
+        </Box>        
     </Stack>)
 }
 
