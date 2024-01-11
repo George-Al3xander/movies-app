@@ -83,3 +83,11 @@ export interface DepartmentResult {
     results: DepartmentYearResult[]
 }
 
+
+export interface IFormData {
+    username: string,
+    email: string,
+    password: string,
+    confirm_password: string,
+}
+

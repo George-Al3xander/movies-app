@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Box, Button, Modal, Skeleton } from "@mui/material"
+import { Alert, AlertTitle, Box, Button, Modal, Skeleton, Stack, Typography } from "@mui/material"
 import ReactPlayer from "react-player"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { modal$, trailerProduct$ } from "../state/atoms/data"
@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query"
 import { modalStatus$ } from "../state/selectors/selectors"
 import { IoIosCloseCircle } from "react-icons/io";
 import { fetchFromTmdb } from "../utils"
+import ModalWrapper from "./ModalWrapper"
 
 
 const TrailerMenu = () => {
@@ -23,42 +24,24 @@ const TrailerMenu = () => {
     }
 
     const {data, isLoading, isError}= useQuery({queryKey: ["trailer"], queryFn: getVideos})
-    if(isError) {
-        return <Modal  open={open}>
-        <Box height={"100%"} sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",            
-            gap: {xs: 2,sm:5},            
-        }}>
-          <Alert action={<Button  onClick={() => setModalStatus(false)}><IoIosCloseCircle size={45}/></Button>} severity="error">
-                    <AlertTitle>Error</AlertTitle>
-                    Seems like we couldn't find the trailer for that movie
-            </Alert>
-        </Box>
-    </Modal>
-    }
+    
     if(!open) {
         return null
     }
     
-    return(<Modal  open={open}>
-        <Box height={"100%"} sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            gap: {xs: 2,sm:5},            
-        }}>
-            <Button  onClick={() => setModalStatus(false)}><IoIosCloseCircle size={45}/></Button>
-            {isLoading ?
+    return(<ModalWrapper  open={open} handleClose={() => setModalStatus(false)}>
+        {isLoading ?
             <Skeleton sx={{ bgcolor: "grey" }} width={"80%"} height={"70%"}/>
             :
-            <ReactPlayer width={"80%"} height={"70%"}  controls url={`https://www.youtube.com/watch?v=${data!.key}`} />
-            }
-
-        </Box>
-    </Modal>)
+            isError?
+            <Stack justifyContent={"center"} alignItems={"center"} width={"100%"} height={"60%"}>
+                 <Typography color={"var(--clr-primary)"} variant="h1">404</Typography>
+                 <Typography textAlign={"center"} color={"var(--clr-primary)"} variant="h5">Seems like we couldn't find the trailer for that movie</Typography>
+            </Stack>
+            :
+            <ReactPlayer width={"100%"} height={"80%"}  controls url={`https://www.youtube.com/watch?v=${data!.key}`} />
+        }
+    </ModalWrapper>)
 }
 
 

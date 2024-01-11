@@ -13,6 +13,7 @@ import { PropagateLoader } from "react-spinners";
 import SeasonPage from "./components/season page/SeasonPage";
 import ReviewsPage from "./components/reviews page/ReviewsPage";
 import PersonPage from "./components/person page/PersonPage";
+import RegisterModal from "./components/auth/RegisterModal";
 
 
 
@@ -29,6 +30,7 @@ function App() {
 
     return (<Box>      
       <TrailerWindow />
+      <RegisterModal />
       <TopBar />        
           <Routes>
               <Route element={<Home />} path="/"/>

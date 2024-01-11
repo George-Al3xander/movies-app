@@ -1,4 +1,4 @@
-import { Box, Container,  Skeleton, Stack, Tab, Typography, styled } from "@mui/material";
+import { Box, Container,  Skeleton, Stack, Tab, TextField, Typography, styled } from "@mui/material";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa";
 import { CustomSwiperBtnProps, GenresProps, HeaderContainerProps, RatingProps, StyledGridSliderProps } from "../../types/type";
@@ -169,3 +169,33 @@ export const CustomSwiperBtn : FC<CustomSwiperBtnProps> = ({prev, ...props}) => 
 
 
 export const StyledTab = styled(Tab)(() => ({"&.Mui-selected": {color:"white"},color: "gray"}))
+
+export const StyledInput = styled(TextField)(() => ({
+    input: { color: 'white' , WebkitBoxShadow: "0 0 0 1000px black inset",WebkitTextFillColor: "white"},  
+      
+    "& label": {
+        color: "white",
+        textTransform: "capitalize"
+    },
+      "&:hover label": {
+        color: "var(--clr-primary)"
+      },
+    //   "& label.Mui-focused": {
+    //     color: "white"
+    //   },
+    //   "& .MuiInput-underline:after": {
+    //     borderBottomColor: "white"
+    //   },
+      "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+          borderColor: "white"
+        },
+        "&:hover fieldset": {
+          borderColor: "var(--clr-primary)",               
+          borderWidth: 2
+        },
+        "&.Mui-focused fieldset": {
+          borderColor: "var(--clr-primary)"
+        }
+      }
+}))

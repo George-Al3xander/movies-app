@@ -133,6 +133,19 @@ body {
   }
 } 
 
+.modal-wrapper-body {
+  background-color: $clr-bg;
+  padding: 2rem;
+  min-width: 100vw;
+  min-height: 100vh;
+  @media (min-width: $sm) {
+    border-radius: 1rem;
+    border: 1px solid gray;
+    min-width: 60vw;
+    min-height: 80vh;
+  }
+}
+
 
 
 
