@@ -31,7 +31,7 @@ const TrailerMenu = () => {
     
     return(<ModalWrapper  open={open} handleClose={() => setModalStatus(false)}>
         {isLoading ?
-            <Skeleton sx={{ bgcolor: "grey" }} width={"80%"} height={"70%"}/>
+            <Box width={"100%"} height={"30%"}><Skeleton sx={{ bgcolor: "grey"}} width={"100%"} height={"250%"}/> </Box>          
             :
             isError?
             <Stack justifyContent={"center"} alignItems={"center"} width={"100%"} height={"60%"}>

@@ -177,12 +177,22 @@ export const StyledInput = styled(TextField)(() => ({
         color: "white",
         textTransform: "capitalize"
     },
+    "& .MuiInputBase-root.Mui-disabled": {
+        "& > fieldset": {
+            borderColor: "gray"
+        }
+    },
+    "& .MuiInputBase-input.Mui-disabled": {
+        WebkitTextFillColor: "gray",
+    },
+    
       "&:hover label": {
         color: "var(--clr-primary)"
       },
-    //   "& label.Mui-focused": {
-    //     color: "white"
-    //   },
+      "& label.Mui-disabled": {
+        color: "gray",
+       
+      },
     //   "& .MuiInput-underline:after": {
     //     borderBottomColor: "white"
     //   },

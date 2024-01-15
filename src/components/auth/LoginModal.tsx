@@ -25,12 +25,9 @@ const Form = () => {
         confirm_password: confirmPasswordValid
     }
 
+    
 
-    const inputs: InputObj[] = [
-        {
-            name: "username", 
-            helperText: <>Username must be at least 5-characters long (no less than 3 characters of that length must be letters), <br></br> no spaces, and may consist only of a-z, 0–9, and underscores.</>          
-        },
+    const inputs: InputObj[] = [        
         {
             name: "email",            
         },
@@ -38,51 +35,44 @@ const Form = () => {
             name: "password",
             helperText: "Need some password regex",
             type: "password"            
-        },
-        {
-            name: "confirm password",
-            helperText: "Passwords do not match",
-            type: "password"
-        },
+        },        
     ]
 
     return(<Stack  spacing={1}>           
         {inputs.map(({name,helperText, ...props}) => {     
             const isError = !valid[name.replace(" ", "_") as "password"]       
-
             return <StyledInput       
                 required  
                 label={name} 
                 id={name.replace(" ", "_")}
                 helperText={isError ? helperText ? helperText : `Ivalid ${name}` : " "}
                 onChange={handleChange}
-                error={!valid[name.replace(" ", "_") as "password"]}              
+                error={isError}              
                 variant="outlined" 
                 {...props}
             />   
         })}
-        <Button onClick={() => console.log(12)} sx={{"&.Mui-disabled": {background: "gray"}}} disabled={[usernameValid,emailValid,passwordValid,confirmPasswordValid].includes(false)} variant="contained" size="large">Sign up</Button> 
+        <Button onClick={() => console.log(12)} sx={{"&.Mui-disabled": {background: "gray"}}} disabled={[emailValid,passwordValid].includes(false)} variant="contained" size="large">Login</Button>     
     </Stack>)
 }
 
 
-const RegisterModal = () => {
-    const open = useRecoilValue(registerModal$) 
-   
-    const setModal = useSetRecoilState(registerModal$)
-    const setLogin = useSetRecoilState(loginModal$)
+const LoginModal = () => {
+    const open = useRecoilValue(loginModal$)
+    const setModal = useSetRecoilState(loginModal$)
+    const setRegisterModal = useSetRecoilState(registerModal$)
     const close = () => setModal(false);
-    const switchToLogin = () => {
-        close()
-        setLogin(true)
+    const switchToRegister = () => {
+        close();
+        setRegisterModal(true)
+
     }
-    
-    return(<ModalWrapper minWidth={"40vw"} overview="Register to enjoy the features" handleClose={close} open={open}>
+    return(<ModalWrapper minWidth={"40vw"} minHeight={"50vh"} overview="Login to your account" handleClose={close} open={open}>
         <Form />
-        <Typography  pt={"1rem"} textAlign={"center"} color={"gray"} variant="subtitle2">Already have an account? <span onClick={() => switchToLogin()}  className="span-form">Login</span></Typography>    
+        <Typography  pt={"1rem"} textAlign={"center"} color={"gray"} variant="subtitle2">Dont't  have an account? <span onClick={() => switchToRegister()}  className="span-form">Sign up</span></Typography>    
 
     </ModalWrapper>)
 
 }
 
-export default RegisterModal
+export default LoginModal

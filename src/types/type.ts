@@ -91,3 +91,10 @@ export interface IFormData {
     confirm_password: string,
 }
 
+
+export interface CustomUser {
+    auth_id: string,
+    username: string,
+    email: string
+}
+

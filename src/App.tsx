@@ -14,6 +14,7 @@ import SeasonPage from "./components/season page/SeasonPage";
 import ReviewsPage from "./components/reviews page/ReviewsPage";
 import PersonPage from "./components/person page/PersonPage";
 import RegisterModal from "./components/auth/RegisterModal";
+import LoginModal from "./components/auth/LoginModal";
 
 
 
@@ -31,6 +32,7 @@ function App() {
     return (<Box>      
       <TrailerWindow />
       <RegisterModal />
+      <LoginModal />
       <TopBar />        
           <Routes>
               <Route element={<Home />} path="/"/>

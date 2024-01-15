@@ -1,5 +1,6 @@
 import { atom } from "recoil";
 import { Genre, Movie, TV } from "../../types/tmdb";
+import { CustomUser } from "../../types/type";
 
 
 export const sliderIndex = atom({
@@ -35,5 +36,11 @@ export const loginModal$ = atom({
 
 export const registerModal$ = atom({
     key: "RegisterModalStatus",
-    default: false
+    default: true
+})
+
+
+export const currentUser = atom<CustomUser | undefined>({
+    key: "Current user",
+    default: undefined
 })

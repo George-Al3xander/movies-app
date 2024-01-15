@@ -30,6 +30,11 @@ body {
     .swiper-pagination-bullet {       
         background: white;       
     }
+
+    .header-movie-info {
+      margin: auto auto 10% 1rem;
+    }
+
     @media (min-width:$sm) {
         .swiper-pagination-bullets{
             width: initial;
@@ -44,9 +49,7 @@ body {
         margin: auto auto 5% 1rem;
       }
     } 
-      .header-movie-info {
-        margin: auto auto 10% 1rem;
-      }       
+             
     
 }
 
@@ -136,13 +139,26 @@ body {
 .modal-wrapper-body {
   background-color: $clr-bg;
   padding: 2rem;
-  min-width: 100vw;
-  min-height: 100vh;
+  
+  @media (max-width: $sm) {
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    
+  }
   @media (min-width: $sm) {
     border-radius: 1rem;
     border: 1px solid gray;
     min-width: 60vw;
     min-height: 80vh;
+  }
+}
+
+
+.span-form {
+  color: white;
+  &:hover {
+    color: $clr-primary ;
+    cursor: pointer;
   }
 }
 
