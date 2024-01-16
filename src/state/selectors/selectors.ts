@@ -1,16 +1,10 @@
 import { selector, selectorFamily } from "recoil";
-import { genresTv$,genresMovie$, modal$, sliderIndex, trailerProduct$ } from "../atoms/data";
-import { Genre } from "../../types/tmdb";
+import { genresTv$,genresMovie$, modal$,  trailerProduct$ } from "../atoms/data";
 
 
 
-export const isButtonActive$ = selectorFamily({
-    key: "ActiveSlide",
-    get: ((number) => ({get}) => {
-        const curr = get(sliderIndex)
-        return number == curr
-    })
-})
+
+
 
 export const genreNamesMovies$ = selectorFamily({
     key: "GenreNamesMovie",

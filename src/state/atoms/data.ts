@@ -3,10 +3,7 @@ import { Genre, Movie, TV } from "../../types/tmdb";
 import { CustomUser } from "../../types/type";
 
 
-export const sliderIndex = atom({
-    key: "sliderIndex",
-    default: 0
-})
+
 
 export const genresTv$ = atom({
     key: "genresTv",

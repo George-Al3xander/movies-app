@@ -32,11 +32,7 @@ const useFormData = () => {
     const [passwordValid,setPasswordValid] = useState(true)
     const [confirmPasswordValid,setConfirmPasswordValid] = useState(true)
 
-    const [username,setUsername] = useState("")
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
-    const [confirmPassword,setConfirmPassword] = useState("")
-    
+       
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {value, id} = e.target
         setFormData((prev) => ({...prev,[id]:value}))
@@ -52,9 +48,7 @@ const useFormData = () => {
         setConfirmPasswordValid((confirm_password == password && notBlank(confirm_password)))           
     }, [formData])
 
-    // useEffect(() => {
-    //     console.log(emailValid)
-    // },[emailValid])
+    
     
     
 
